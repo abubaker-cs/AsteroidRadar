@@ -5,6 +5,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+
 android {
     compileSdkVersion 33
     defaultConfig {
