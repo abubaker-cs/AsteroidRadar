@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.network
+package com.udacity.asteroidradar.model
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 /**
+ * 01
+ *
  * Asteroid entity to be stored in the table_asteroid.
  */
 

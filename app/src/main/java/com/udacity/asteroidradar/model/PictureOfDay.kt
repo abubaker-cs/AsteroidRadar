@@ -1,10 +1,12 @@
-package com.udacity.asteroidradar.network
+package com.udacity.asteroidradar.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
+ * 01
+ *
  * PictureOfDay entity to be stored in the table_pic_of_day.
  */
 @Entity(tableName = "table_pic_of_day")
