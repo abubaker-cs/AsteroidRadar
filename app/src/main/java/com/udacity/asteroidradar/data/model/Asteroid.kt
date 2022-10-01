@@ -12,6 +12,12 @@ import kotlinx.parcelize.Parcelize
  * Asteroid entity to be stored in the table_asteroid.
  */
 
+// Kotlin "data class" with properties that match the JSON response fields
+
+// Android Extensions - Dynamically updating Particles
+// When you annotate a class with @Parcelize, a Parcelable implementation is automatically generated
+// Ref: https://developer.android.com/kotlin/parcelize
+
 @Entity(tableName = "table_asteroid")
 @Parcelize
 data class Asteroid(

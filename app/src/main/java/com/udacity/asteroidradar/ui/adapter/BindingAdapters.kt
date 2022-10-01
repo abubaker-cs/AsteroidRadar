@@ -5,6 +5,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.udacity.asteroidradar.data.model.Asteroid
 
+// This file will be used to bind functions() through the XML file. e.g:
+// app:imageUrl="@{viewModel.property.imgSrcUrl}"
+
 // 01
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
