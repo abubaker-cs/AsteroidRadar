@@ -11,6 +11,8 @@ import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
+
+    // onCreateView()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +31,7 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    // displayAstronomicalUnitExplanationDialog()
     private fun displayAstronomicalUnitExplanationDialog() {
         val builder = AlertDialog.Builder(requireActivity())
             .setMessage(getString(R.string.astronomica_unit_explanation))

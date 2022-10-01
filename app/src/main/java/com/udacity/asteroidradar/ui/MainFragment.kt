@@ -10,10 +10,13 @@ import com.udacity.asteroidradar.ui.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
 
+    // viewModel
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
+
+    // onCreateView()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,12 +31,14 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    // onCreateOptionsMenu()
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    // onOptionsItemSelected()
     @Deprecated("Deprecated in Java", ReplaceWith("true"))
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return true
