@@ -3,6 +3,7 @@ package com.udacity.asteroidradar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.udacity.asteroidradar.model.Asteroid
 
 // 01
 @BindingAdapter("statusIcon")
@@ -43,4 +44,18 @@ fun bindTextViewToKmUnit(textView: TextView, number: Double) {
 fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
+}
+
+// --------------------- CUstom
+
+// 06 namecode
+@BindingAdapter("namecode")
+fun bindTextViewToNamecode(textView: TextView, asteroid: Asteroid?) {
+    textView.text = asteroid?.codename
+}
+
+// 07 date
+@BindingAdapter("date")
+fun bindTextViewToDate(textView: TextView, asteroid: Asteroid) {
+    textView.text = asteroid.closeApproachDate
 }

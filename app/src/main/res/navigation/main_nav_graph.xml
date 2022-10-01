@@ -26,8 +26,9 @@
 
         <argument
             android:name="selectedAsteroid"
-            app:argType="com.udacity.asteroidradar.network.Asteroid"
+            app:argType="com.udacity.asteroidradar.model.Asteroid"
             />
+
     </fragment>
 
 </navigation>

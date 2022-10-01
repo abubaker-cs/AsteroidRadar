@@ -14,7 +14,7 @@ import com.udacity.asteroidradar.model.PictureOfDay
  * This database stores a [Asteroid] entity
  */
 
-@Database(entities = [Asteroid::class], version = 1, exportSchema = false)
+@Database(entities = [Asteroid::class, PictureOfDay::class], version = 1, exportSchema = false)
 abstract class AsteroidDatabase : RoomDatabase() {
 
     // Reference to the @database/AsteroidDao.kt file
