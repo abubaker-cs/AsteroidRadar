@@ -22,4 +22,7 @@
     <string
         name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
     <string name="list_item_thumbnail_desc">Asteroid Thumbnail</string>
+    <string name="daily_image_thumbnail">Thumbnail for image of the day</string>
+    <string name="hazard_status">Hazard Status</string>
+    <string name="help_button_desc">Help Button</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.ui
+package com.udacity.asteroidradar.view
 
 
 import android.os.Bundle
@@ -18,7 +18,7 @@ class DetailFragment : Fragment() {
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val asteroid = com.udacity.asteroidradar.ui.DetailFragmentArgs.fromBundle(
+        val asteroid = com.udacity.asteroidradar.view.DetailFragmentArgs.fromBundle(
             requireArguments()
         ).selectedAsteroid
         binding.asteroid = asteroid

@@ -1,4 +1,6 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.utils
+
+import com.udacity.asteroidradar.BuildConfig
 
 object Constants {
     const val BASE_URL = "https://api.nasa.gov/"
