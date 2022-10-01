@@ -15,6 +15,8 @@ class MainFragment : Fragment() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
+    //
+
 
     // onCreateView()
     override fun onCreateView(
