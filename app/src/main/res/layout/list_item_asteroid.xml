@@ -8,7 +8,7 @@
 
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.model.Asteroid"
+            type="com.udacity.asteroidradar.data.model.Asteroid"
             />
 
     </data>

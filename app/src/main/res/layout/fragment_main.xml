@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.udacity.asteroidradar.viewmodels.MainViewModel"
+            type="com.udacity.asteroidradar.ui.viewmodel.MainViewModel"
             />
 
     </data>

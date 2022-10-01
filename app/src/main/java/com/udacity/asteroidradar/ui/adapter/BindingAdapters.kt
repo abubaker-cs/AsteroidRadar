@@ -3,7 +3,7 @@ package com.udacity.asteroidradar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.udacity.asteroidradar.model.Asteroid
+import com.udacity.asteroidradar.data.model.Asteroid
 
 // 01
 @BindingAdapter("statusIcon")
