@@ -19,7 +19,7 @@
         android:background="@color/app_background"
         >
 
-        <!-- Thumbnail -->
+        <!-- Thumbnail: Asteroid Image -->
         <ImageView
             android:id="@+id/activity_main_image_of_the_day"
             android:layout_width="match_parent"
@@ -42,6 +42,7 @@
             app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day"
             >
 
+            <!-- Close Approach Date -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
                         />
                 </LinearLayout>
 
+                <!-- Absolute Magnitude -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,6 +107,7 @@
                             />
                     </LinearLayout>
 
+                    <!-- Icon: Help Button -->
                     <ImageView
                         android:id="@+id/help_button"
                         android:layout_width="wrap_content"
@@ -116,6 +119,7 @@
 
                 </LinearLayout>
 
+                <!-- Estimated Diameter -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -134,6 +138,7 @@
                     tools:text="0.82 km"
                     />
 
+                <!-- Relative Velocity -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,6 +157,7 @@
                     tools:text="11.9 km/s"
                     />
 
+                <!-- Distance from earth -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
