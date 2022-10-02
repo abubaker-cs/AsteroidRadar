@@ -69,3 +69,11 @@ object AsteroidApi {
     }
 }
 
+/**
+ * It defines constants to match the query values our web service expects.
+ */
+enum class AsteroidApiFilter(val value: String) {
+    SHOW_RENT("rent"),
+    SHOW_BUY("buy"),
+    SHOW_ALL("all")
+}
