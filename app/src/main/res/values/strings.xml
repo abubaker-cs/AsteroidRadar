@@ -21,7 +21,7 @@
     <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">This is NASA\'s picture of day, showing nothing yet</string>
     <string
         name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
-    <string name="list_item_thumbnail_desc">Asteroid Thumbnail</string>
+    <string name="list_item_thumbnail_desc">Hazard Status icon</string>
     <string name="daily_image_thumbnail">Thumbnail for image of the day</string>
     <string name="hazard_status">Hazard Status</string>
     <string name="help_button_desc">Help Button</string>

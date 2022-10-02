@@ -11,8 +11,8 @@ import kotlinx.parcelize.Parcelize
  *
  * PictureOfDay entity to be stored in the table_pic_of_day.
  */
-@Entity(tableName = "table_picture")
 @Parcelize
+@Entity(tableName = "table_picture")
 data class PictureOfDay(
 
     // Media Type

@@ -25,6 +25,7 @@
             android:background="@color/app_background"
             >
 
+            <!-- Asteroid Name -->
             <TextView
                 android:id="@+id/codenameTextView"
                 android:layout_width="0dp"
@@ -39,6 +40,7 @@
                 tools:text="Asteroid Name"
                 />
 
+            <!-- Date -->
             <TextView
                 android:id="@+id/dateTextView"
                 android:layout_width="0dp"
@@ -54,8 +56,9 @@
                 tools:text="Date"
                 />
 
+            <!-- Status Icon -->
             <ImageView
-                android:id="@+id/foodImageView"
+                android:id="@+id/icon_hazard_status"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="16dp"
