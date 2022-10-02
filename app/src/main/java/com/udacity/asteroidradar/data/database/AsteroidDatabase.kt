@@ -21,7 +21,7 @@ abstract class AsteroidDatabase : RoomDatabase() {
     abstract fun asteroidDaoReference(): AsteroidDao
     abstract fun pictureOfDayReference(): PictureOfDayDao
 
-    //
+    // Companion
     companion object {
 
         // This will help in maintaining a single instance of the database opened at a given time.
