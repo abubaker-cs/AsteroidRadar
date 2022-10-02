@@ -18,8 +18,8 @@ import com.udacity.asteroidradar.data.model.PictureOfDay
 abstract class AsteroidDatabase : RoomDatabase() {
 
     // Reference to the @database/AsteroidDao.kt file
-    abstract fun asteroidDao(): AsteroidDao
-    abstract fun pictureOfDay(): PictureOfDayDao
+    abstract fun asteroidDaoReference(): AsteroidDao
+    abstract fun pictureOfDayReference(): PictureOfDayDao
 
     //
     companion object {

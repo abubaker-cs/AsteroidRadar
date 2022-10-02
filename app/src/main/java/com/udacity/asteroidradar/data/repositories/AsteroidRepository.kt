@@ -9,7 +9,8 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 class AsteroidRepository {
-    private val service: Service
+
+    val service: Service
 
     init {
 
