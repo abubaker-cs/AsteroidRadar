@@ -16,6 +16,10 @@ class MainFragment : Fragment() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+
     /**
      * Inflates the layout with Data Binding, sets its lifecycle owner to the MainFragment
      * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
@@ -26,7 +30,7 @@ class MainFragment : Fragment() {
     ): View {
 
         // Inflate Layout: @layout/fragment_main.xml
-        val binding = FragmentMainBinding.inflate(inflater)
+        _binding = FragmentMainBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
@@ -37,6 +41,11 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     /**
