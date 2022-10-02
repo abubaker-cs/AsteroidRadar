@@ -36,6 +36,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/daily_image_thumbnail"
                 android:scaleType="centerCrop"
+                app:pictureOfDayImage="@{viewModel.picture}"
                 app:srcCompat="@drawable/placeholder_picture_of_day"
                 />
 

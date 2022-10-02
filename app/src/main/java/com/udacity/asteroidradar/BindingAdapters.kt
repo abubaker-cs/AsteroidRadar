@@ -3,7 +3,10 @@ package com.udacity.asteroidradar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
+import coil.load
 import com.udacity.asteroidradar.data.model.Asteroid
+import com.udacity.asteroidradar.main.PictureState
 
 // This file will be used to bind functions() through the XML file. e.g:
 // app:imageUrl="@{viewModel.property.imgSrcUrl}"
@@ -61,4 +64,10 @@ fun bindTextViewToNamecode(textView: TextView, asteroid: Asteroid?) {
 @BindingAdapter("date")
 fun bindTextViewToDate(textView: TextView, asteroid: Asteroid) {
     textView.text = asteroid.closeApproachDate
+}
+
+// 08 pictureOfDayImage
+@BindingAdapter("pictureOfDayImage")
+fun bindPictureOfDay(imageView: ImageView, pictureOfDay: LiveData<PictureState>) {
+    imageView.load(pictureOfDay.value?.picture?.url)
 }

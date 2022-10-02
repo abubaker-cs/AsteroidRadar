@@ -13,6 +13,9 @@ import com.udacity.asteroidradar.data.model.PictureOfDay
 import com.udacity.asteroidradar.data.repositories.AsteroidRepository
 import com.udacity.asteroidradar.utils.Constants
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -25,17 +28,21 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val repository: AsteroidRepository by lazy { AsteroidRepository() }
 
     // The internal MutableLiveData String that stores the status of the most recent request
-    private val _state = MutableLiveData<AsteroidState>()
+    private val _state: MutableStateFlow<AsteroidState> =
+        MutableStateFlow(AsteroidState(true, emptyList()))
 
     // The external immutable LiveData for the request status String
-    val status: LiveData<AsteroidState>
-        get() = _state
+    val state = _state.asStateFlow()
+
 
     // LiveData Asteroid with an internal Mutable and external LiveData
     private val _picture: MutableLiveData<PictureState> =
         MutableLiveData(PictureState(null))
 
     val picture: LiveData<PictureState> = _picture
+
+    //
+    val loadingState = state.map { value -> value.loading }
 
 
     // LiveData Asteroid with an internal Mutable and external LiveData
