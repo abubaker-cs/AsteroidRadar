@@ -154,6 +154,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 getToday(),
                 getSevenDaysLater()
             )
+
+            // TODO Replace GSON
             val gson = JsonParser().parse(response.toString()).asJsonObject
 
             val jo2 = JSONObject(gson.toString())

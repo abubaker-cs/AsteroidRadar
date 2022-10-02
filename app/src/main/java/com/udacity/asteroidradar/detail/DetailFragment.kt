@@ -24,6 +24,7 @@ class DetailFragment : Fragment() {
 
         binding.asteroid = asteroid
 
+        // Initialize Custom Dialog
         binding.helpButton.setOnClickListener {
             displayAstronomicalUnitExplanationDialog()
         }
@@ -31,7 +32,7 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
-    // displayAstronomicalUnitExplanationDialog()
+    // Configuration for the Custom Dialog
     private fun displayAstronomicalUnitExplanationDialog() {
         val builder = AlertDialog.Builder(requireActivity())
             .setMessage(getString(R.string.astronomica_unit_explanation))

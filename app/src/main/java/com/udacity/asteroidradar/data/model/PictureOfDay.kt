@@ -17,11 +17,11 @@ data class PictureOfDay(
 
     // Media Type
     @ColumnInfo(name = "media_type")
-    val mediaType: String,
+    val mediaType: String? = "",
 
     // Title
     @ColumnInfo(name = "title")
-    val title: String,
+    val title: String? = "",
 
     // URL
     @PrimaryKey
