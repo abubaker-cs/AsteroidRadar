@@ -5,9 +5,9 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.google.gson.JsonParser
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
-import com.udacity.asteroidradar.data.database.AsteroidDao
+import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
-import com.udacity.asteroidradar.data.database.PictureOfDayDao
+import com.udacity.asteroidradar.data.database.dao.PictureOfDayDao
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.model.PictureOfDay
 import com.udacity.asteroidradar.data.repositories.AsteroidRepository

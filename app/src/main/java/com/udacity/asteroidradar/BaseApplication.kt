@@ -14,6 +14,7 @@ import com.udacity.asteroidradar.data.database.AsteroidDatabase
 // We will instantiate the database instance in the Application class
 class BaseApplication : Application() {
 
+    // TODO Delete database: from BaseApplication
     // I am using lazy delegate so the instance database is lazily created whenever access is needed
     // to the database (rather than when the app starts) .
     val database: AsteroidDatabase by lazy {
