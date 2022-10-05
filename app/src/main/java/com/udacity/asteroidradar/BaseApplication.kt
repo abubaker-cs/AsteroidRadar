@@ -1,7 +1,13 @@
 package com.udacity.asteroidradar
 
 import android.app.Application
+import androidx.work.*
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
+import com.udacity.asteroidradar.data.work.RefreshAsteroidsWorker
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 /**
  * File 05
@@ -17,11 +23,45 @@ class BaseApplication : Application() {
     // TODO Delete database: from BaseApplication
     // I am using lazy delegate so the instance database is lazily created whenever access is needed
     // to the database (rather than when the app starts) .
-    val database: AsteroidDatabase by lazy {
+    // val database: AsteroidDatabase by lazy {
 
-        // Calling the getDatabase() while passing in the context will instantiate the database.
-        AsteroidDatabase.getDatabase(this)
+    // Calling the getDatabase() while passing in the context will instantiate the database.
+    // AsteroidDatabase.getDatabase(this)
 
+    // }
+
+    override fun onCreate() {
+        super.onCreate()
+        delayedInit()
     }
 
+    private val applicationScope = CoroutineScope(Dispatchers.Default)
+
+    private fun delayedInit() {
+        applicationScope.launch {
+            setupRecurringWork()
+        }
+    }
+
+    private fun setupRecurringWork() {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .setRequiresBatteryNotLow(true)
+            .setRequiresCharging(true)
+            .apply {
+                setRequiresDeviceIdle(true)
+            }.build()
+
+        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshAsteroidsWorker>(
+            1, TimeUnit.DAYS
+        )
+            .setConstraints(constraints)
+            .build()
+
+        WorkManager.getInstance().enqueueUniquePeriodicWork(
+            RefreshAsteroidsWorker.WORK_NAME,
+            ExistingPeriodicWorkPolicy.KEEP,
+            repeatingRequest
+        )
+    }
 }
