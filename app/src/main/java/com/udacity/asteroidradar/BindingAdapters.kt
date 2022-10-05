@@ -6,7 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import coil.load
 import com.udacity.asteroidradar.data.model.Asteroid
-import com.udacity.asteroidradar.main.PictureState
+import com.udacity.asteroidradar.main.data.PictureState
 
 // This file will be used to bind functions() through the XML file. e.g:
 // app:imageUrl="@{viewModel.property.imgSrcUrl}"

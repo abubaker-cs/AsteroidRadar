@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.main
+package com.udacity.asteroidradar.main.data
 
 import com.udacity.asteroidradar.data.model.Asteroid
 

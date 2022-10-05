@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.main
+package com.udacity.asteroidradar.main.enums
 
 /**
  * It defines constants to match the query values our web service expects.

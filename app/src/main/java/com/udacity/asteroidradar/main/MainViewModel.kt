@@ -11,6 +11,9 @@ import com.udacity.asteroidradar.data.database.dao.PictureOfDayDao
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.model.PictureOfDay
 import com.udacity.asteroidradar.data.repositories.AsteroidRepository
+import com.udacity.asteroidradar.main.data.AsteroidState
+import com.udacity.asteroidradar.main.data.PictureState
+import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
 import com.udacity.asteroidradar.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
