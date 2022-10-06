@@ -1,17 +1,14 @@
 package com.udacity.asteroidradar
 
-import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import coil.load
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.main.data.PictureState
-import kotlinx.coroutines.flow.Flow
 
 // This file will be used to bind functions() through the XML file. e.g:
 // app:imageUrl="@{viewModel.property.imgSrcUrl}"
@@ -57,7 +54,7 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
 }
 
-// --------------------- CUstom
+// --------------------- Custom Binding functions
 
 // 06 namecode
 @BindingAdapter("namecode")
@@ -72,46 +69,21 @@ fun bindTextViewToDate(textView: TextView, asteroid: Asteroid) {
 }
 
 // 08 pictureOfDayImage
-// LiveData<PictureState>
 @BindingAdapter("pictureOfDayImage")
-fun bindPictureOfDay(imageView: ImageView, pictureOfDay: LiveData<PictureState>) {
+fun bindPictureOfDay(imageView: ImageView, imgReference: LiveData<PictureState>) {
 
+    val thumbnail = imgReference.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
 
-    // imgView.load(imgUrl.value?.picture?.url)
-    imageView.load(pictureOfDay.value?.picture?.url)
+    Glide.with(imageView.context)
+        .asBitmap()
+        .load(thumbnail)
 
-
-    // val imgUri = imgUrl.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
-    // val imgUri = imgUrl.value?.picture?.url
-    // val imageParse = Uri.parse(imgUrl.value?.picture?.url.toString())
-
-
-//    imgUrl.let {
-////        Picasso.get().load(imageParse).fit().centerCrop()
-////            .placeholder(R.drawable.loading_animation)
-////            .error(R.drawable.ic_broken_image).into(imgView)
-//
-//
-//        // Source
-//        // Converting the imgUrl to a URI with the Https scheme
-//        // val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-//        // val imgUri = imgUrl.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
-//        // Log.v("PICTURE", "Path 1: $imgUri");
-//        // Log.v("PICTURE", "Path 2: $imgUrl");
-//        // val imgUri = "http://via.placeholder.com/300.png"
-//
-//        // Load
-////        Glide.with(imgView.context)
-////            .load(imgUri)
-////
-////            // Loading and Fallback images
-////            .apply(
-////                RequestOptions()
-////                    .placeholder(R.drawable.loading_animation)
-////                    .error(R.drawable.ic_broken_image)
-////            )
-////            .into(imgView)
-//
-//    }
+        // Loading and Fallback images
+        .apply(
+            RequestOptions()
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image)
+        )
+        .into(imageView)
 
 }
