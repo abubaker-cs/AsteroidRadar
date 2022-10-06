@@ -29,7 +29,7 @@ data class Asteroid(
 
     // Code Name
     @ColumnInfo(name = "code_name")
-    val codename: String,
+    val codeName: String,
 
     // Close Approach Date
     @ColumnInfo(name = "close_approach_date")

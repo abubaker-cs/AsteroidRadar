@@ -56,15 +56,15 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 
 // --------------------- Custom Binding functions
 
-// 06 namecode
-@BindingAdapter("namecode")
-fun bindTextViewToNamecode(textView: TextView, asteroid: Asteroid?) {
-    textView.text = asteroid?.codename
+// 06 nameCode
+@BindingAdapter("codeName")
+fun bindTextViewToCodeName(textView: TextView, asteroid: Asteroid?) {
+    textView.text = asteroid?.codeName
 }
 
 // 07 date
 @BindingAdapter("date")
-fun bindTextViewToCloseApproachDate(textView: TextView, asteroid: Asteroid) {
+fun bindTextViewToDate(textView: TextView, asteroid: Asteroid) {
     textView.text = asteroid.closeApproachDate
 }
 
