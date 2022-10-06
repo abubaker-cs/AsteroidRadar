@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.udacity.asteroidradar.data.model.PictureOfDay
+import com.udacity.asteroidradar.data.model.ImageOfDay
 
 /**
  * 02
@@ -12,14 +12,14 @@ import com.udacity.asteroidradar.data.model.PictureOfDay
  * Data Access Object for database interaction.
  */
 @Dao
-interface PictureOfDayDao {
+interface ImageOfDayDao {
 
     // Insert a picture into the database by using the OnConflictStrategy.REPLACE
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(pictureOfDay: PictureOfDay)
+    suspend fun insert(imageOfDay: ImageOfDay)
 
     // Get today's picture
     @Query("SELECT * from table_picture WHERE url=:url")
-    suspend fun getPicture(url: String): PictureOfDay
+    suspend fun getPicture(url: String): ImageOfDay
 
 }

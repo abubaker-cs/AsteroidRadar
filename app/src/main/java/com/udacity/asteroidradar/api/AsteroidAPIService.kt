@@ -46,7 +46,7 @@ import com.udacity.asteroidradar.data.model.Asteroid
 //    @GET("planetary/apod/")
 //    suspend fun getPicture(
 //        @Query("api_key") apiKey: String = Constants.API_KEY
-//    ): PictureOfDay
+//    ): ImageOfDay
 //
 //}
 

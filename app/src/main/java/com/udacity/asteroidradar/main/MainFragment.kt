@@ -62,12 +62,19 @@ class MainFragment : Fragment() {
         binding.asteroidRecycler.adapter = asteroidAdapter
 
 
+        /**
+         * Load Data
+         */
+
+        // Asteroid
         viewModel.state.onEach { asteroidState ->
             asteroidAdapter.setAsteroids(asteroidState.asteroids)
         }.launchIn(lifecycleScope)
 
-        viewModel.loadingState.onEach { isLoading ->
-            binding.statusLoadingWheel.isVisible = isLoading
+
+        // Downloading ?
+        viewModel.loadingState.onEach { isDownloading ->
+            binding.downloadingProgressBar.isVisible = isDownloading
         }.launchIn(lifecycleScope)
     }
 

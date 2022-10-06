@@ -1,7 +1,7 @@
 package com.udacity.asteroidradar.data.repositories
 
 import com.google.gson.JsonObject
-import com.udacity.asteroidradar.data.model.PictureOfDay
+import com.udacity.asteroidradar.data.model.ImageOfDay
 import com.udacity.asteroidradar.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -40,11 +40,11 @@ class AsteroidRepository {
         ): JsonObject
 
 
-        // Get the Daily Picture
+        // Get the Daily Image
         @GET("planetary/apod/")
         suspend fun getPicture(
             @Query("api_key") apiKey: String = Constants.API_KEY
-        ): PictureOfDay
+        ): ImageOfDay
     }
 
 }

@@ -1,7 +1,7 @@
 package com.udacity.asteroidradar.main.data
 
-import com.udacity.asteroidradar.data.model.PictureOfDay
+import com.udacity.asteroidradar.data.model.ImageOfDay
 
 data class PictureState(
-    val picture: PictureOfDay?
+    val picture: ImageOfDay?
 )

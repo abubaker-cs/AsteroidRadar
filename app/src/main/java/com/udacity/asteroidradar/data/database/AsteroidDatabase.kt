@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
-import com.udacity.asteroidradar.data.database.dao.PictureOfDayDao
+import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
 import com.udacity.asteroidradar.data.model.Asteroid
-import com.udacity.asteroidradar.data.model.PictureOfDay
+import com.udacity.asteroidradar.data.model.ImageOfDay
 
 /**
  * FILE 04
@@ -16,12 +16,12 @@ import com.udacity.asteroidradar.data.model.PictureOfDay
  * This database stores a [Asteroid] entity
  */
 
-@Database(entities = [Asteroid::class, PictureOfDay::class], version = 1, exportSchema = false)
+@Database(entities = [Asteroid::class, ImageOfDay::class], version = 1, exportSchema = false)
 abstract class AsteroidDatabase : RoomDatabase() {
 
     // Reference to the @database/AsteroidDao.kt file
     abstract fun asteroidDaoReference(): AsteroidDao
-    abstract fun pictureOfDayReference(): PictureOfDayDao
+    abstract fun imageOfDayReference(): ImageOfDayDao
 
     // Companion
     companion object {

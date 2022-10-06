@@ -8,7 +8,7 @@ import com.google.gson.JsonParser
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
-import com.udacity.asteroidradar.data.database.dao.PictureOfDayDao
+import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
 import com.udacity.asteroidradar.data.repositories.AsteroidRepository
 import com.udacity.asteroidradar.utils.Constants
 import org.json.JSONObject
@@ -19,42 +19,65 @@ import java.util.*
 class RefreshAsteroidsWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
 
+    //
     private val asteroidDao: AsteroidDao by lazy {
         AsteroidDatabase.getDatabase(applicationContext).asteroidDaoReference()
     }
 
-    private val pictureDao: PictureOfDayDao by lazy {
-        AsteroidDatabase.getDatabase(applicationContext).pictureOfDayReference()
+    //
+    private val imageDao: ImageOfDayDao by lazy {
+        AsteroidDatabase.getDatabase(applicationContext).imageOfDayReference()
     }
 
-
+    //
     private val repository: AsteroidRepository by lazy { AsteroidRepository() }
 
+    //
     companion object {
         const val WORK_NAME = "RefreshAsteroidsWorker"
     }
 
+    /**
+     *
+     */
     override suspend fun doWork(): Result {
 
         return try {
+
+            //
             val response = repository.service.getAsteroids(
                 getToday(),
                 getSevenDaysLater()
             )
+
+            //
             val gson = JsonParser().parse(response.toString()).asJsonObject
 
+            //
             val jo2 = JSONObject(gson.toString())
+
+            //
             val asteroids = parseAsteroidsJsonResult(jo2)
 
+            //
             asteroidDao.insert(asteroids)
 
+            //
             val picture = repository.service.getPicture()
-            pictureDao.insert(picture)
 
+            //
+            imageDao.insert(picture)
+
+            //
             Result.success()
+
         } catch (e: HttpException) {
+
+            //
             Result.retry()
+
         }
+
     }
 }
 

@@ -7,9 +7,9 @@ import com.google.gson.JsonParser
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
-import com.udacity.asteroidradar.data.database.dao.PictureOfDayDao
+import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
 import com.udacity.asteroidradar.data.model.Asteroid
-import com.udacity.asteroidradar.data.model.PictureOfDay
+import com.udacity.asteroidradar.data.model.ImageOfDay
 import com.udacity.asteroidradar.data.repositories.AsteroidRepository
 import com.udacity.asteroidradar.main.data.AsteroidState
 import com.udacity.asteroidradar.main.data.PictureState
@@ -63,8 +63,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     //
-    private val pictureDao: PictureOfDayDao by lazy {
-        AsteroidDatabase.getDatabase(app).pictureOfDayReference()
+    private val pictureDao: ImageOfDayDao by lazy {
+        AsteroidDatabase.getDatabase(app).imageOfDayReference()
     }
 
 
@@ -173,7 +173,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     // getPicture() - Daily Picture
-    private suspend fun getPicture(): PictureOfDay? = withContext(Dispatchers.IO) {
+    private suspend fun getPicture(): ImageOfDay? = withContext(Dispatchers.IO) {
         try {
             val picture = repository.service.getPicture()
             pictureDao.insert(picture)
