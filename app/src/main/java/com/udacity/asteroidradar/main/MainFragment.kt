@@ -87,7 +87,7 @@ class MainFragment : Fragment() {
     }
 
     /**
-     * we need to provide a menu option so the user can change the filter
+     * We need to provide a menu option so the user can change the filter
      */
     @Deprecated("Deprecated in Java", ReplaceWith("true"))
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

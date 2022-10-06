@@ -184,7 +184,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    @SuppressLint("WeekBasedYear")
+
     private fun getToday(): String {
         val calendar = Calendar.getInstance()
         val currentTime = calendar.time
