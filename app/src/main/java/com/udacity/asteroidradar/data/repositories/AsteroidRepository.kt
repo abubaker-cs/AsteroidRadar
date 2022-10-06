@@ -24,8 +24,14 @@ class AsteroidRepository {
 
     }
 
+    /**
+     * Returns a Coroutine [List] of [Service] which can be fetched with await() if in a Coroutine scope.
+     * The @GET annotation indicates that the "Asteroid" endpoint will be requested with the GET
+     * HTTP method
+     */
     interface Service {
 
+        // Get the updated record of Asteroids
         @GET("neo/rest/v1/feed/")
         suspend fun getAsteroids(
             @Query("start_date") startDate: String,
@@ -33,6 +39,8 @@ class AsteroidRepository {
             @Query("api_key") apiKey: String = Constants.API_KEY
         ): JsonObject
 
+
+        // Get the Daily Picture
         @GET("planetary/apod/")
         suspend fun getPicture(
             @Query("api_key") apiKey: String = Constants.API_KEY
