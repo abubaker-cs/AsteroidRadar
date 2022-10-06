@@ -64,13 +64,13 @@ fun bindTextViewToNamecode(textView: TextView, asteroid: Asteroid?) {
 
 // 07 date
 @BindingAdapter("date")
-fun bindTextViewToDate(textView: TextView, asteroid: Asteroid) {
+fun bindTextViewToCloseApproachDate(textView: TextView, asteroid: Asteroid) {
     textView.text = asteroid.closeApproachDate
 }
 
 // 08 pictureOfDayImage
-@BindingAdapter("pictureOfDayImage")
-fun bindPictureOfDay(imageView: ImageView, imgReference: LiveData<PictureState>) {
+@BindingAdapter("imageOfTheDay")
+fun bindImageOfDay(imageView: ImageView, imgReference: LiveData<PictureState>) {
 
     val thumbnail = imgReference.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
 
@@ -82,7 +82,7 @@ fun bindPictureOfDay(imageView: ImageView, imgReference: LiveData<PictureState>)
         .apply(
             RequestOptions()
                 .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image)
+                .error(R.drawable.ic_image)
         )
         .into(imageView)
 
