@@ -74,7 +74,7 @@ fun bindImageOfDay(imageView: ImageView, imgReference: LiveData<PictureState>) {
 
     // Converting the imgReference to a URI with the Https scheme
     val thumbnail =
-        imgReference.value?.picture?.imgSrcUrl?.toUri()?.buildUpon()?.scheme("https")?.build()
+        imgReference.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
 
     Glide.with(imageView.context)
 
