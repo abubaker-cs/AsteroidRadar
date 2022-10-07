@@ -13,7 +13,7 @@ import com.udacity.asteroidradar.data.model.ImageOfDay
  * FILE 04
  *
  * Room database to persist data for the Asteroid Table.
- * This database stores a [Asteroid] entity
+ * This database stores a [Asteroid] and [ImageOfDay] entities
  */
 
 @Database(entities = [Asteroid::class, ImageOfDay::class], version = 1, exportSchema = false)

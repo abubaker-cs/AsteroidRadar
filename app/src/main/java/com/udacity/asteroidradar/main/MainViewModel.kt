@@ -152,8 +152,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     // getAsteroids() - List of Asteroids
     private suspend fun getAsteroids(): List<Asteroid> = withContext(Dispatchers.IO) {
+
         try {
-            val response = repository.service.getAsteroids(
+
+            val response = repository.asteroidAPI.getAsteroids(
                 getToday(),
                 getSevenDaysLater()
             )
@@ -170,12 +172,13 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             e.printStackTrace()
             asteroidDao.getAsteroids()
         }
+
     }
 
     // getPicture() - Daily Picture
     private suspend fun getPicture(): ImageOfDay? = withContext(Dispatchers.IO) {
         try {
-            val picture = repository.service.getPicture()
+            val picture = repository.asteroidAPI.getPicture()
             pictureDao.insert(picture)
             pictureDao.getPicture(picture.url)
         } catch (e: Exception) {

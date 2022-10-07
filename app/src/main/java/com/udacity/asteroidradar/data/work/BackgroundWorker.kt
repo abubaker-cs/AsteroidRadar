@@ -41,7 +41,7 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
         return try {
 
             //
-            val response = repository.service.getAsteroids(
+            val response = repository.asteroidAPI.getAsteroids(
                 getToday(),
                 getSevenDaysLater()
             )
@@ -55,7 +55,7 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
             asteroidDao.insert(asteroids)
 
             // Update daily image
-            val picture = repository.service.getPicture()
+            val picture = repository.asteroidAPI.getPicture()
             imageDao.insert(picture)
 
             //

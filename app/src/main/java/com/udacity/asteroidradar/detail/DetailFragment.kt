@@ -32,6 +32,7 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    // TODO - organize custom dialog
     // Configuration for the Custom Dialog
     private fun displayAstronomicalUnitExplanationDialog() {
         val builder = AlertDialog.Builder(requireActivity())

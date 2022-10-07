@@ -1,35 +1,48 @@
 package com.udacity.asteroidradar.data.repositories
 
-import com.google.gson.JsonObject
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.data.model.ImageOfDay
 import com.udacity.asteroidradar.utils.Constants
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 class AsteroidRepository {
 
-    val service: Service
+    val asteroidAPI: AsteroidAPI
 
     init {
 
+        /**
+         * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
+         * full Kotlin compatibility.
+         */
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
+        /**
+         * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
+         * object.
+         */
         val retrofit: Retrofit = Retrofit
             .Builder()
             .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
-        service = retrofit.create(Service::class.java)
+        asteroidAPI = retrofit.create(AsteroidAPI::class.java)
 
     }
 
     /**
-     * Returns a Coroutine [List] of [Service] which can be fetched with await() if in a Coroutine scope.
+     * Returns a Coroutine [List] of [AsteroidAPI] which can be fetched with await() if in a Coroutine scope.
      * The @GET annotation indicates that the "Asteroid" endpoint will be requested with the GET
      * HTTP method
      */
-    interface Service {
+    interface AsteroidAPI {
 
         // Get the updated record of Asteroids
         @GET("neo/rest/v1/feed/")
