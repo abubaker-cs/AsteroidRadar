@@ -43,16 +43,30 @@ class BaseApplication : Application() {
         }
     }
 
+    /**
+     *
+     */
     private fun setupRecurringWork() {
+
+        // Creating Constrains for the WorkManager
         val constraints = Constraints.Builder()
+
+            //
             .setRequiredNetworkType(NetworkType.UNMETERED)
+
+            //
             .setRequiresBatteryNotLow(true)
+
+            // Charging constraint
             .setRequiresCharging(true)
+
+            //
             .apply {
                 setRequiresDeviceIdle(true)
             }.build()
 
-        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshAsteroidsWorker>(
+        // Add WorkRequest to save the image to the filesystem
+        val save = PeriodicWorkRequestBuilder<RefreshAsteroidsWorker>(
             1, TimeUnit.DAYS
         )
             .setConstraints(constraints)
@@ -61,7 +75,8 @@ class BaseApplication : Application() {
         WorkManager.getInstance().enqueueUniquePeriodicWork(
             RefreshAsteroidsWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
-            repeatingRequest
+            save
         )
+
     }
 }
