@@ -3,7 +3,7 @@ package com.udacity.asteroidradar
 import android.app.Application
 import androidx.work.*
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
-import com.udacity.asteroidradar.data.work.RefreshAsteroidsWorker
+import com.udacity.asteroidradar.data.work.BackgroundWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,25 +43,40 @@ class BaseApplication : Application() {
         }
     }
 
+    /**
+     *
+     */
     private fun setupRecurringWork() {
+
+        // Creating Constrains for the WorkManager
         val constraints = Constraints.Builder()
+
+            //
             .setRequiredNetworkType(NetworkType.UNMETERED)
+
+            //
             .setRequiresBatteryNotLow(true)
+
+            // Charging constraint
             .setRequiresCharging(true)
+
+            //
             .apply {
                 setRequiresDeviceIdle(true)
             }.build()
 
-        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshAsteroidsWorker>(
+        // Add WorkRequest to save the image to the filesystem
+        val save = PeriodicWorkRequestBuilder<BackgroundWorker>(
             1, TimeUnit.DAYS
         )
             .setConstraints(constraints)
             .build()
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(
-            RefreshAsteroidsWorker.WORK_NAME,
+            BackgroundWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
-            repeatingRequest
+            save
         )
+
     }
 }

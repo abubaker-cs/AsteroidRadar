@@ -68,21 +68,30 @@ fun bindTextViewToDate(textView: TextView, asteroid: Asteroid) {
     textView.text = asteroid.closeApproachDate
 }
 
-// 08 pictureOfDayImage
+// 08 imageOfTheDay
 @BindingAdapter("imageOfTheDay")
 fun bindImageOfDay(imageView: ImageView, imgReference: LiveData<PictureState>) {
 
-    val thumbnail = imgReference.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
+    // Converting the imgReference to a URI with the Https scheme
+    val thumbnail =
+        imgReference.value?.picture?.imgSrcUrl?.toUri()?.buildUpon()?.scheme("https")?.build()
 
     Glide.with(imageView.context)
+
+        // Attempts to always load the resource as a Bitmap, even if it could actually be animated.s
         .asBitmap()
+
+        // Returns a request builder to load the given Uri.
         .load(thumbnail)
 
         // Loading and Fallback images
         .apply(
+
+            // Fallback images for Placeholder and Error states
             RequestOptions()
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_image)
+
         )
         .into(imageView)
 

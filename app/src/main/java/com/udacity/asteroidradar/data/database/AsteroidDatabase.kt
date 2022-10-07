@@ -19,7 +19,7 @@ import com.udacity.asteroidradar.data.model.ImageOfDay
 @Database(entities = [Asteroid::class, ImageOfDay::class], version = 1, exportSchema = false)
 abstract class AsteroidDatabase : RoomDatabase() {
 
-    // Reference to the @database/AsteroidDao.kt file
+    // Reference to the table structures which we want to implement inside our asteroid_database
     abstract fun asteroidDaoReference(): AsteroidDao
     abstract fun imageOfDayReference(): ImageOfDayDao
 

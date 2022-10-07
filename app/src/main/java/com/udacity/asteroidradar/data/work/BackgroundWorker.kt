@@ -16,26 +16,22 @@ import retrofit2.HttpException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RefreshAsteroidsWorker(appContext: Context, params: WorkerParameters) :
+class BackgroundWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
 
-    //
+    // 01 Asteroid Repository
+    private val repository: AsteroidRepository by lazy { AsteroidRepository() }
+
+    // 02 List of Asteroids
     private val asteroidDao: AsteroidDao by lazy {
         AsteroidDatabase.getDatabase(applicationContext).asteroidDaoReference()
     }
 
-    //
+    // 03 Image of the Day
     private val imageDao: ImageOfDayDao by lazy {
         AsteroidDatabase.getDatabase(applicationContext).imageOfDayReference()
     }
 
-    //
-    private val repository: AsteroidRepository by lazy { AsteroidRepository() }
-
-    //
-    companion object {
-        const val WORK_NAME = "RefreshAsteroidsWorker"
-    }
 
     /**
      *
@@ -52,20 +48,14 @@ class RefreshAsteroidsWorker(appContext: Context, params: WorkerParameters) :
 
             //
             val gson = JsonParser().parse(response.toString()).asJsonObject
-
-            //
             val jo2 = JSONObject(gson.toString())
 
-            //
+            // Update Asteroids List
             val asteroids = parseAsteroidsJsonResult(jo2)
-
-            //
             asteroidDao.insert(asteroids)
 
-            //
+            // Update daily image
             val picture = repository.service.getPicture()
-
-            //
             imageDao.insert(picture)
 
             //
@@ -79,6 +69,12 @@ class RefreshAsteroidsWorker(appContext: Context, params: WorkerParameters) :
         }
 
     }
+
+    //
+    companion object {
+        const val WORK_NAME = "BackgroundWorker"
+    }
+
 }
 
 @SuppressLint("WeekBasedYear")

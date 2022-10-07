@@ -18,6 +18,8 @@ import kotlinx.parcelize.Parcelize
 // When you annotate a class with @Parcelize, a Parcelable implementation is automatically generated
 // Ref: https://developer.android.com/kotlin/parcelize
 
+//
+
 @Parcelize
 @Entity(tableName = "table_asteroid")
 data class Asteroid(

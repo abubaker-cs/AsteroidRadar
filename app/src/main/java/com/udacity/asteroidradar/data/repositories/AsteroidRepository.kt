@@ -37,7 +37,9 @@ class AsteroidRepository {
             @Query("start_date") startDate: String,
             @Query("end_date") endDate: String,
             @Query("api_key") apiKey: String = Constants.API_KEY
-        ): JsonObject
+        )
+
+        // : JsonObject
 
 
         // Get the Daily Image

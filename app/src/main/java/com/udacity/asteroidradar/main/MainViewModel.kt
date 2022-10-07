@@ -177,7 +177,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         try {
             val picture = repository.service.getPicture()
             pictureDao.insert(picture)
-            pictureDao.getPicture(picture.url)
+            pictureDao.getPicture(picture.imgSrcUrl)
         } catch (e: Exception) {
             e.printStackTrace()
             null
