@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.network
 
-import com.google.gson.JsonObject
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.data.model.ImageOfDay

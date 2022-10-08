@@ -72,6 +72,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
      * Call getAsteroid() on init so we can display status immediately.
      */
     init {
+
         viewModelScope.launch {
             val asteroids = getAsteroids()
             _state.value = AsteroidState(false, asteroids)
@@ -80,45 +81,9 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             val pictureOfDay = getPicture()
             _picture.value = PictureState(pictureOfDay)
         }
+
     }
 
-    /**
-     * Sets the value of the response LiveData to the Mars API status or the successful number of
-     * Mars properties retrieved.
-     */
-//    private fun getMarsRealEstateProperties(filter: AsteroidApiFilter) {
-//
-//        // Coroutine
-//        viewModelScope.launch {
-//            _status.value = AsteroidApiStatus.LOADING
-//            try {
-//                // _asteroid.value = AsteroidApi.retrofitService.getAsteroids(filter.value)
-//                _status.value = AsteroidApiStatus.DONE
-//            } catch (e: Exception) {
-//                _status.value = AsteroidApiStatus.ERROR
-//                _asteroid.value = ArrayList()
-//            }
-//        }
-//
-//    }
-
-    /**
-     * An encapsulated LiveData variable for navigating to the selectedProperty detail screen
-     */
-    // private val _navigateToSelectedProperty = MutableLiveData<Asteroid>()
-
-//    val navigateToSelectedProperty: LiveData<Asteroid>
-//        get() = _navigateToSelectedProperty
-//
-//    fun displayPropertyDetails(marsProperty: Asteroid) {
-//        _navigateToSelectedProperty.value = marsProperty
-//    }
-
-    // Add displayPropertyDetailsComplete() to set _navigateToSelectedProperty to false once
-    // navigation is completed to prevent unwanted extra navigations
-//    fun displayPropertyDetailsComplete() {
-//        _navigateToSelectedProperty.value = null
-//    }
 
     /**
      * To re-query the data by calling getMarsRealEstateProperties with the new filter
@@ -168,9 +133,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
             asteroidDao.insert(asteroids)
             asteroidDao.getAsteroids()
+
         } catch (e: Exception) {
+
             e.printStackTrace()
             asteroidDao.getAsteroids()
+
         }
 
     }
@@ -189,19 +157,29 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
 
     private fun getToday(): String {
+
         val calendar = Calendar.getInstance()
+
         val currentTime = calendar.time
+
         val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+
         return dateFormat.format(currentTime)
+
     }
 
     @SuppressLint("WeekBasedYear")
     private fun getSevenDaysLater(): String {
+
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_YEAR, 7)
+
         val currentTime = calendar.time
+
         val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+
         return dateFormat.format(currentTime)
+
     }
 
 
