@@ -78,7 +78,7 @@ fun bindImageOfDay(imageView: ImageView, imgUrl: LiveData<PictureState>) {
         val imgUri =
             imgUrl.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
 
-        Glide.with(imageView.context)
+        GlideApp.with(imageView.context)
 
             // Attempts to always load the resource as a Bitmap, even if it could actually be animated.s
             .asBitmap()
