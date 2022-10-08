@@ -1,9 +1,10 @@
 package com.udacity.asteroidradar
 
 import android.app.Application
+import android.content.Context
 import androidx.work.*
+import com.udacity.asteroidradar.api.BackgroundWorker
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
-import com.udacity.asteroidradar.data.work.BackgroundWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -72,7 +73,7 @@ class BaseApplication : Application() {
             .setConstraints(constraints)
             .build()
 
-        WorkManager.getInstance().enqueueUniquePeriodicWork(
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             BackgroundWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
             save

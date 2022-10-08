@@ -1,15 +1,13 @@
-package com.udacity.asteroidradar.data.work
+package com.udacity.asteroidradar.api
 
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.google.gson.JsonParser
-import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
-import com.udacity.asteroidradar.data.repositories.AsteroidRepository
 import com.udacity.asteroidradar.utils.Constants
 import org.json.JSONObject
 import retrofit2.HttpException
@@ -20,7 +18,7 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
 
     // 01 Asteroid Repository
-    private val repository: AsteroidRepository by lazy { AsteroidRepository() }
+    private val repository: AsteroidsRepository by lazy { AsteroidsRepository() }
 
     // 02 List of Asteroids
     private val asteroidDao: AsteroidDao by lazy {

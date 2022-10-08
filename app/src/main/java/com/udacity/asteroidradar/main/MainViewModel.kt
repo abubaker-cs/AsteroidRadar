@@ -10,7 +10,7 @@ import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.model.ImageOfDay
-import com.udacity.asteroidradar.data.repositories.AsteroidRepository
+import com.udacity.asteroidradar.api.AsteroidsRepository
 import com.udacity.asteroidradar.main.data.AsteroidState
 import com.udacity.asteroidradar.main.data.PictureState
 import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
@@ -28,7 +28,7 @@ import java.util.*
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     // Repository
-    private val repository: AsteroidRepository by lazy { AsteroidRepository() }
+    private val repository: AsteroidsRepository by lazy { AsteroidsRepository() }
 
     // The internal MutableLiveData String that stores the status of the most recent request
     private val _state: MutableStateFlow<AsteroidState> =
