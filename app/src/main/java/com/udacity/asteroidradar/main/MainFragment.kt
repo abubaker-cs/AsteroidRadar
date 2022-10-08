@@ -64,7 +64,7 @@ class MainFragment : Fragment() {
 
 
         /**
-         * Load Data
+         * TODO Fix Loading Data in RecyclerView
          */
 
         // Asteroid
