@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.api
+package com.udacity.asteroidradar.network
 
 import android.annotation.SuppressLint
 import com.udacity.asteroidradar.data.model.Asteroid

@@ -1,5 +1,6 @@
-package com.udacity.asteroidradar.api
+package com.udacity.asteroidradar.network
 
+import com.google.gson.JsonObject
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.data.model.ImageOfDay
@@ -51,7 +52,6 @@ class AsteroidsRepository {
             @Query("end_date") endDate: String,
             @Query("api_key") apiKey: String = Constants.API_KEY
         )
-
         // : JsonObject
 
 

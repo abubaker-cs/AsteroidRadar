@@ -1,9 +1,8 @@
 package com.udacity.asteroidradar
 
 import android.app.Application
-import android.content.Context
 import androidx.work.*
-import com.udacity.asteroidradar.api.BackgroundWorker
+import com.udacity.asteroidradar.network.BackgroundWorker
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,21 +32,19 @@ class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        delayedInit()
-    }
 
-    private val applicationScope = CoroutineScope(Dispatchers.Default)
+        val applicationScope = CoroutineScope(Dispatchers.Default)
 
-    private fun delayedInit() {
         applicationScope.launch {
-            setupRecurringWork()
+            periodicWork()
         }
+
     }
 
     /**
      *
      */
-    private fun setupRecurringWork() {
+    private fun periodicWork() {
 
         // Creating Constrains for the WorkManager
         val constraints = Constraints.Builder()

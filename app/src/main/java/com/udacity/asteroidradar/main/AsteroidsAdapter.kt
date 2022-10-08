@@ -13,11 +13,11 @@ class AsteroidsAdapter(private val clickListener: (asteroid: Asteroid) -> Unit) 
     private var asteroids: List<Asteroid> = emptyList()
     private lateinit var binding: ListItemAsteroidBinding
 
-    //
-    // fun setAsteroids(data: List<Asteroid>) {
-    //    this.asteroids = data
-    //    notifyDataSetChanged()
-    // }
+
+    fun setAsteroids(data: List<Asteroid>) {
+        this.asteroids = data
+        notifyDataSetChanged()
+    }
 
     inner class AsteroidViewHolder(private val binding: ListItemAsteroidBinding) :
         RecyclerView.ViewHolder(binding.root) {
