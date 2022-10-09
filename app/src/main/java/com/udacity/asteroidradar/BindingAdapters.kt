@@ -5,10 +5,9 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
-import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.udacity.asteroidradar.data.model.Asteroid
-import com.udacity.asteroidradar.main.data.PictureState
+import com.udacity.asteroidradar.main.data.ImageState
 
 // This file will be used to bind functions() through the XML file. e.g:
 // app:imageUrl="@{viewModel.property.imgSrcUrl}"
@@ -38,13 +37,13 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 
 // 02 Image of the Day: Main Screen
 @BindingAdapter("imageOfTheDay")
-fun bindImageOfDay(imageView: ImageView, imgUrl: LiveData<PictureState>) {
+fun bindImageOfDay(imageView: ImageView, imgUrl: LiveData<ImageState>) {
 
     imgUrl.let {
 
         // Converting the imgReference to a URI with the Https scheme
         val imgUri =
-            imgUrl.value?.picture?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
+            imgUrl.value?.image?.url?.toUri()?.buildUpon()?.scheme("https")?.build()
 
         GlideApp.with(imageView.context)
 

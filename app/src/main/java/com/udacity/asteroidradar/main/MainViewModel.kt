@@ -15,7 +15,7 @@ import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.model.ImageOfDay
 import com.udacity.asteroidradar.data.weeklyRecords
 import com.udacity.asteroidradar.main.data.AsteroidState
-import com.udacity.asteroidradar.main.data.PictureState
+import com.udacity.asteroidradar.main.data.ImageState
 import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.repositories.AsteroidsRepository
@@ -40,10 +40,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     val status = _status.asStateFlow()
 
     // LiveData Asteroid with an internal Mutable and external LiveData
-    private val _picture: MutableLiveData<PictureState> =
-        MutableLiveData(PictureState(null))
+    private val _picture: MutableLiveData<ImageState> =
+        MutableLiveData(ImageState(null))
 
-    val picture: LiveData<PictureState> = _picture
+    val picture: LiveData<ImageState> = _picture
 
     //
     val downloadingState = status.map { value -> value.downloading }
@@ -80,7 +80,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             cachedAsteroids = asteroids
 
             val pictureOfDay = getPicture()
-            _picture.value = PictureState(pictureOfDay)
+            _picture.value = ImageState(pictureOfDay)
         }
 
     }
@@ -91,9 +91,11 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
      */
     fun updateFilter(filter: AsteroidApiFilter) {
         viewModelScope.launch {
+
+            //
             when (filter) {
 
-                // Week
+                // Week: Display full list of all Asteroids for the week
                 AsteroidApiFilter.SHOW_WEEK -> {
                     val asteroids =
                         asteroidDao.getAsteroidsFromThisWeek(
@@ -103,7 +105,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                     _status.value = AsteroidState(false, asteroids)
                 }
 
-                // Today
+                // Today: Display only the Asteroids related to today
                 AsteroidApiFilter.SHOW_TODAY -> {
                     val asteroids = asteroidDao.getAsteroidToday(dailyRecords())
                     _status.value = AsteroidState(false, asteroids)
@@ -112,6 +114,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                     val asteroids = asteroidDao.getAsteroids()
                     _status.value = AsteroidState(false, asteroids)
                 }
+
             }
         }
     }
@@ -123,8 +126,13 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         try {
 
             val response = repository.asteroidAPI.getAsteroids(
+
+                // Filtered List for only today's records
                 dailyRecords(),
+
+                // Detailed list of all Asteroids for the week
                 weeklyRecords()
+
             )
 
             // The reflection adapter uses Kotlin’s reflection library to convert your Kotlin classes
@@ -132,10 +140,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             // Ref: https://github.com/square/moshi#reflection
             val moshi = Moshi.Builder().add(response).add(KotlinJsonAdapterFactory()).build()
 
-            val jo2 = JSONObject(moshi.toString())
-            val asteroids = parseAsteroidsJsonResult(jo2)
+            val sampleData = JSONObject(moshi.toString())
+            val asteroids = parseAsteroidsJsonResult(sampleData)
 
             asteroidDao.insert(asteroids)
+
+            //
             asteroidDao.getAsteroids()
 
         } catch (e: Exception) {

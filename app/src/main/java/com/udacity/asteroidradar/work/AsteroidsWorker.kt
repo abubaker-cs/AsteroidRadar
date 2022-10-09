@@ -49,8 +49,8 @@ class AsteroidWorker(appContext: Context, params: WorkerParameters) :
             // Ref: https://github.com/square/moshi#reflection
             val moshi = Moshi.Builder().add(response).add(KotlinJsonAdapterFactory()).build()
 
-            val jo2 = JSONObject(moshi.toString())
-            val asteroids = parseAsteroidsJsonResult(jo2)
+            val sampleData = JSONObject(moshi.toString())
+            val asteroids = parseAsteroidsJsonResult(sampleData)
 
             asteroidDao.insert(asteroids)
 
