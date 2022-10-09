@@ -3,7 +3,8 @@ package com.udacity.asteroidradar.network
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.google.gson.JsonParser
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
@@ -43,10 +44,17 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
             )
 
             // ------------------------------------------------------------
-            val gson = JsonParser().parse(response.toString()).asJsonObject
-            val jo2 = JSONObject(gson.toString())
+            // val gson = JsonParser().parse(response.toString()).
+            // val jo2 = JSONObject(gson.toString())
 
             // Update Asteroids List
+
+            // The reflection adapter uses Kotlin’s reflection library to convert your Kotlin classes
+            // to and from JSON. Enable it by adding the KotlinJsonAdapterFactory to your Moshi.Builder:
+            // Ref: https://github.com/square/moshi#reflection
+            val moshi = Moshi.Builder().add(response).add(KotlinJsonAdapterFactory()).build()
+
+            val jo2 = JSONObject(moshi.toString())
             val asteroids = parseAsteroidsJsonResult(jo2)
 
             // -----------------------------------------------------------

@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.gson.JsonParser
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
@@ -18,7 +17,6 @@ import com.udacity.asteroidradar.main.data.PictureState
 import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
 import com.udacity.asteroidradar.network.AsteroidsRepository
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
-import com.udacity.asteroidradar.utils.Constants
 import com.udacity.asteroidradar.utils.dailyRecords
 import com.udacity.asteroidradar.utils.weeklyRecords
 import kotlinx.coroutines.Dispatchers
@@ -28,8 +26,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -131,10 +127,11 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 weeklyRecords()
             )
 
-            // TODO Replace GSON
-            val gson = JsonParser().parse(response.toString()).asJsonObject
+            // val jsonString = response.toJson()
+            // val gson = JsonParser().parse(response.toString()).asJsonObject
 
-            val jo2 = JSONObject(gson.toString())
+            val moshi = Moshi.Builder().add(response).add(KotlinJsonAdapterFactory()).build()
+            val jo2 = JSONObject(moshi.toString())
             val asteroids = parseAsteroidsJsonResult(jo2)
 
             // ------------

@@ -35,3 +35,20 @@ data class ImageOfDay(
     val url: String
 
 ) : Parcelable
+
+/**
+ * Notes:
+ *
+ * Kotlin "data class" with properties that match the JSON response fields
+ *
+ * Android Extensions - Dynamically updating Particles
+ * When you annotate a class with @Parcelize, a Parcelable implementation is automatically generated
+ * Ref: https://developer.android.com/kotlin/parcelize
+ *
+ * @JsonClass(generateAdapter = true)
+ * It will generate a JsonAdapter to handle serializing/deserializing to and from JSON of the specified type
+ *
+ * The@Json(name = “***”) annotation defines the JSON key name for serialisation and the property
+ * to set the value on with deserialization.
+ *
+ */
