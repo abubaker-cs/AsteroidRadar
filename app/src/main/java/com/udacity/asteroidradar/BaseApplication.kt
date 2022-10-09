@@ -3,7 +3,7 @@ package com.udacity.asteroidradar
 import android.app.Application
 import androidx.work.*
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
-import com.udacity.asteroidradar.work.BackgroundWorker
+import com.udacity.asteroidradar.work.AsteroidWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,8 +60,8 @@ class BaseApplication : Application() {
                 setRequiresDeviceIdle(true)
             }.build()
 
-        // Add WorkRequest to save the image to the filesystem
-        val save = PeriodicWorkRequestBuilder<BackgroundWorker>(
+        // Add WorkRequest to save the image to the filesystem using the AsteroidWorker.kt file
+        val save = PeriodicWorkRequestBuilder<AsteroidWorker>(
 
             // We are asking the device to perform the background operation, once a day
             1, TimeUnit.DAYS
@@ -79,7 +79,7 @@ class BaseApplication : Application() {
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
 
             // Get the unique worker name from the companion object defined in the AsteroidsWorker.kt
-            BackgroundWorker.WORK_NAME,
+            AsteroidWorker.WORK_NAME,
 
             //
             ExistingPeriodicWorkPolicy.KEEP,

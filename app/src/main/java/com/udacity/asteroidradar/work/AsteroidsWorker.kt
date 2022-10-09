@@ -15,7 +15,7 @@ import com.udacity.asteroidradar.repositories.AsteroidsRepository
 import org.json.JSONObject
 import retrofit2.HttpException
 
-class BackgroundWorker(appContext: Context, params: WorkerParameters) :
+class AsteroidWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
 
     // 01 Asteroid Repository
@@ -70,9 +70,9 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
 
     }
 
-    //
+    // I will be using it to store the unique name of the Work
     companion object {
-        const val WORK_NAME = "BackgroundWorker"
+        const val WORK_NAME = "AsteroidWorker"
     }
 
 }
