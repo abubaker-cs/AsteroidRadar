@@ -146,23 +146,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
             )
 
-            //            val gson = JsonParser().parse(response.toString()).asJsonObject
-            //            val gsonData = JSONObject(gson.toString())
-
-            // The reflection adapter uses Kotlin’s reflection library to convert your Kotlin classes
-            // to and from JSON. Enable it by adding the KotlinJsonAdapterFactory to your Moshi.Builder:
-            // Ref: https://github.com/square/moshi#reflection
-//            val moshi = Moshi.Builder()
-//                .add(response)
-//                .add(KotlinJsonAdapterFactory())
-//                .build()
-//
-//            val sampleData = JSONObject(moshi.toString())
-//
-//            val asteroids = parseAsteroidsJsonResult(sampleData)
-
+            //
             val gson = JsonParser().parse(response.toString()).asJsonObject
-
             val responseInString = JSONObject(gson.toString())
             val asteroids = parseAsteroidsJsonResult(responseInString)
 

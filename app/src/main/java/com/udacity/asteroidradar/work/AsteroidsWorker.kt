@@ -45,30 +45,12 @@ class AsteroidWorker(ctx: Context, params: WorkerParameters) :
                 weeklyRecords()
             )
 
-            // The reflection adapter uses Kotlin’s reflection library to convert your Kotlin classes
-            // to and from JSON. Enable it by adding the KotlinJsonAdapterFactory to your Moshi.Builder:
-            // Ref: https://github.com/square/moshi#reflection
-//            val moshi = Moshi.Builder()
-//                .add(response)
-//                .add(KotlinJsonAdapterFactory())
-//                .build()
-//
-//            val sampleData = JSONObject(moshi.toString())
-//            val asteroids = parseAsteroidsJsonResult(sampleData)
-//            asteroidDao.insert(asteroids)
-
+            //
             val gson = JsonParser().parse(response.toString()).asJsonObject
-
             val responseInString = JSONObject(gson.toString())
             val asteroids = parseAsteroidsJsonResult(responseInString)
 
             asteroidDao.insert(asteroids)
-
-//            val gson = JsonParser().parse(response.toString()).asJsonObject
-//            val gsonData = JSONObject(gson.toString())
-//
-//            val asteroids = parseAsteroidsJsonResult(gsonData)
-
 
             // Update daily image
             val image = repository.asteroidAPI.getImage()
