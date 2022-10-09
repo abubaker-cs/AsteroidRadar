@@ -37,17 +37,10 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
 
         return try {
 
-            //
             val response = repository.asteroidAPI.getAsteroids(
                 dailyRecords(),
                 weeklyRecords()
             )
-
-            // ------------------------------------------------------------
-            // val gson = JsonParser().parse(response.toString()).
-            // val jo2 = JSONObject(gson.toString())
-
-            // Update Asteroids List
 
             // The reflection adapter uses Kotlin’s reflection library to convert your Kotlin classes
             // to and from JSON. Enable it by adding the KotlinJsonAdapterFactory to your Moshi.Builder:
@@ -56,9 +49,6 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
 
             val jo2 = JSONObject(moshi.toString())
             val asteroids = parseAsteroidsJsonResult(jo2)
-
-            // -----------------------------------------------------------
-
 
             asteroidDao.insert(asteroids)
 
