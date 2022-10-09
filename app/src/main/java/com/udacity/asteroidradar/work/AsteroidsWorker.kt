@@ -59,8 +59,8 @@ class AsteroidWorker(ctx: Context, params: WorkerParameters) :
 
             val gson = JsonParser().parse(response.toString()).asJsonObject
 
-            val jo2 = JSONObject(gson.toString())
-            val asteroids = parseAsteroidsJsonResult(jo2)
+            val responseInString = JSONObject(gson.toString())
+            val asteroids = parseAsteroidsJsonResult(responseInString)
 
             asteroidDao.insert(asteroids)
 
