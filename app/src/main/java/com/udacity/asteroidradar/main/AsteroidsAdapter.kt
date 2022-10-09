@@ -10,7 +10,7 @@ import com.udacity.asteroidradar.databinding.ListItemAsteroidBinding
 class AsteroidsAdapter(private val clickListener: (asteroid: Asteroid) -> Unit) :
     RecyclerView.Adapter<AsteroidsAdapter.AsteroidViewHolder>() {
 
-    private var asteroids: List<Asteroid> = emptyList()
+    private lateinit var asteroids: List<Asteroid> // = emptyList()
     private lateinit var binding: ListItemAsteroidBinding
 
 
@@ -19,15 +19,24 @@ class AsteroidsAdapter(private val clickListener: (asteroid: Asteroid) -> Unit) 
         notifyDataSetChanged()
     }
 
+    // Bind data using the list_item_asteroid.xml file
     inner class AsteroidViewHolder(private val binding: ListItemAsteroidBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bindAsteroid(clickListener: (asteroid: Asteroid) -> Unit, asteroid: Asteroid) {
+
+            //
             binding.asteroid = asteroid
+
+            //
             binding.root.setOnClickListener {
                 clickListener(asteroid)
             }
+
+            //
             binding.executePendingBindings()
         }
+
     }
 
     /**
@@ -83,8 +92,13 @@ class AsteroidsAdapter(private val clickListener: (asteroid: Asteroid) -> Unit) 
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
+
+        //
         val asteroid = asteroids[position]
+
+        //
         holder.bindAsteroid(clickListener, asteroid)
+
     }
 
 //    class OnClickListener(val clickListener: (asteroid: Asteroid) -> Unit) {
