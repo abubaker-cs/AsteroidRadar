@@ -92,7 +92,7 @@ fun bindImageOfDay(imageView: ImageView, imgUrl: LiveData<PictureState>) {
                 // Fallback images for Placeholder and Error states
                 RequestOptions()
                     .placeholder(R.drawable.loading_animation)
-                    .error(R.drawable.ic_image)
+                    // .error(R.drawable.ic_image)
 
             )
             .into(imageView)
