@@ -1,7 +1,7 @@
 package com.udacity.asteroidradar.main.enums
 
 /**
- * It defines constants to match the query values our web asteroidAPI expects.
+ * It defines constants to match the query values which our web asteroidAPI expects.
  */
 enum class AsteroidApiFilter(val value: String) {
     SHOW_WEEK("week"),
