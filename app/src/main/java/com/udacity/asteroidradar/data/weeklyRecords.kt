@@ -1,9 +1,11 @@
 package com.udacity.asteroidradar.data
 
+import android.annotation.SuppressLint
 import com.udacity.asteroidradar.utils.Constants
 import java.text.SimpleDateFormat
 import java.util.*
 
+@SuppressLint("WeekBasedYear")
 fun weeklyRecords(): String {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DAY_OF_YEAR, 7)
