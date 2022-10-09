@@ -132,6 +132,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             val jo2 = JSONObject(gson.toString())
             val asteroids = parseAsteroidsJsonResult(jo2)
 
+
+            // ------------
+
+
             asteroidDao.insert(asteroids)
             asteroidDao.getAsteroids()
 

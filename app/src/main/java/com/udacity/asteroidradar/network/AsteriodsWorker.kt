@@ -42,12 +42,16 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
                 weeklyRecords()
             )
 
-            //
+            // ------------------------------------------------------------
             val gson = JsonParser().parse(response.toString()).asJsonObject
             val jo2 = JSONObject(gson.toString())
 
             // Update Asteroids List
             val asteroids = parseAsteroidsJsonResult(jo2)
+
+            // -----------------------------------------------------------
+
+
             asteroidDao.insert(asteroids)
 
             // Update daily image
