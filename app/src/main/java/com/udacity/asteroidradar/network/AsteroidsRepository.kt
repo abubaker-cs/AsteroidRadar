@@ -32,7 +32,7 @@ class AsteroidsRepository {
         val retrofit: Retrofit = Retrofit
             .Builder()
             .baseUrl(Constants.BASE_URL)
-            // .addConverterFactory(MoshiConverterFactory.create(moshi))
+            //  .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
