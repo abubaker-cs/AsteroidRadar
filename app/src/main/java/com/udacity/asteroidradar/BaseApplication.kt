@@ -61,6 +61,8 @@ class BaseApplication : Application() {
             }.build()
 
         // Add WorkRequest to save the image to the filesystem using the AsteroidWorker.kt file
+        // 1. OneTimeWorkRequest: A WorkRequest that will only execute once.
+        // 2. PeriodicWorkRequest: A WorkRequest that will repeat on a cycle.
         val save = PeriodicWorkRequestBuilder<AsteroidWorker>(
 
             // We are asking the device to perform the background operation, once a day

@@ -1,10 +1,12 @@
 package com.udacity.asteroidradar.repositories
 
+import com.google.gson.JsonObject
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.data.model.ImageOfDay
 import com.udacity.asteroidradar.utils.Constants
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -27,10 +29,16 @@ class AsteroidsRepository {
          * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
          * object.
          */
-        val retrofit: Retrofit = Retrofit
+        val retrofits: Retrofit = Retrofit
             .Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .baseUrl(Constants.BASE_URL)
+            .build()
+
+        val retrofit: Retrofit = Retrofit
+            .Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         asteroidAPI = retrofit.create(AsteroidAPI::class.java)
@@ -50,12 +58,12 @@ class AsteroidsRepository {
             @Query("start_date") startDate: String,
             @Query("end_date") endDate: String,
             @Query("api_key") apiKey: String = Constants.API_KEY
-        ) // : JsonObject
+        ): JsonObject
 
 
         // Get the Daily Image
         @GET("planetary/apod/")
-        suspend fun getPicture(
+        suspend fun getImage(
             @Query("api_key") apiKey: String = Constants.API_KEY
         ): ImageOfDay
     }

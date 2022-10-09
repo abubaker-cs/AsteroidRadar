@@ -1,10 +1,10 @@
 package com.udacity.asteroidradar.work
 
 import android.content.Context
+import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.google.gson.JsonParser
 import com.udacity.asteroidradar.data.dailyRecords
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
@@ -13,10 +13,9 @@ import com.udacity.asteroidradar.data.weeklyRecords
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.repositories.AsteroidsRepository
 import org.json.JSONObject
-import retrofit2.HttpException
 
-class AsteroidWorker(appContext: Context, params: WorkerParameters) :
-    CoroutineWorker(appContext, params) {
+class AsteroidWorker(ctx: Context, params: WorkerParameters) :
+    CoroutineWorker(ctx, params) {
 
     // 01 Asteroid Repository
     private val repository: AsteroidsRepository by lazy { AsteroidsRepository() }
@@ -37,6 +36,8 @@ class AsteroidWorker(appContext: Context, params: WorkerParameters) :
      */
     override suspend fun doWork(): Result {
 
+        val appContext = applicationContext
+
         return try {
 
             val response = repository.asteroidAPI.getAsteroids(
@@ -47,25 +48,38 @@ class AsteroidWorker(appContext: Context, params: WorkerParameters) :
             // The reflection adapter uses Kotlin’s reflection library to convert your Kotlin classes
             // to and from JSON. Enable it by adding the KotlinJsonAdapterFactory to your Moshi.Builder:
             // Ref: https://github.com/square/moshi#reflection
-            val moshi = Moshi.Builder().add(response).add(KotlinJsonAdapterFactory()).build()
+//            val moshi = Moshi.Builder()
+//                .add(response)
+//                .add(KotlinJsonAdapterFactory())
+//                .build()
+//
+//            val sampleData = JSONObject(moshi.toString())
+//            val asteroids = parseAsteroidsJsonResult(sampleData)
+//            asteroidDao.insert(asteroids)
 
-            val sampleData = JSONObject(moshi.toString())
-            val asteroids = parseAsteroidsJsonResult(sampleData)
+            val gson = JsonParser().parse(response.toString()).asJsonObject
+
+            val jo2 = JSONObject(gson.toString())
+            val asteroids = parseAsteroidsJsonResult(jo2)
 
             asteroidDao.insert(asteroids)
 
+//            val gson = JsonParser().parse(response.toString()).asJsonObject
+//            val gsonData = JSONObject(gson.toString())
+//
+//            val asteroids = parseAsteroidsJsonResult(gsonData)
+
+
             // Update daily image
-            val picture = repository.asteroidAPI.getPicture()
-            imageDao.insert(picture)
+            val image = repository.asteroidAPI.getImage()
+            imageDao.insert(image)
 
             //
             Result.success()
 
-        } catch (e: HttpException) {
-
-            //
-            Result.retry()
-
+        } catch (throwable: Throwable) {
+            Log.e("AsteroidsWorker", "Error fetching data...")
+            Result.failure()
         }
 
     }

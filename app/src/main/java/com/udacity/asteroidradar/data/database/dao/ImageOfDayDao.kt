@@ -20,10 +20,6 @@ interface ImageOfDayDao {
 
     // Get today's picture
     @Query("SELECT * from table_image WHERE url=:url")
-    suspend fun getPicture(url: String): ImageOfDay
-
-    // Picture: Get saved record
-    // @Query("SELECT * from table_image")
-    // suspend fun getStoredPicture()
+    suspend fun getImage(url: String): ImageOfDay
 
 }

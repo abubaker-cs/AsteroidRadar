@@ -5,8 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.google.gson.JsonParser
 import com.udacity.asteroidradar.data.dailyRecords
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
@@ -64,7 +63,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     //
-    private val pictureDao: ImageOfDayDao by lazy {
+    private val imageDao: ImageOfDayDao by lazy {
         AsteroidDatabase.getDatabase(app).imageOfDayReference()
     }
 
@@ -79,7 +78,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             _status.value = AsteroidState(false, asteroids)
             cachedAsteroids = asteroids
 
-            val pictureOfDay = getPicture()
+            val pictureOfDay = getImage()
             _picture.value = ImageState(pictureOfDay)
         }
 
@@ -147,13 +146,25 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
             )
 
+            //            val gson = JsonParser().parse(response.toString()).asJsonObject
+            //            val gsonData = JSONObject(gson.toString())
+
             // The reflection adapter uses Kotlin’s reflection library to convert your Kotlin classes
             // to and from JSON. Enable it by adding the KotlinJsonAdapterFactory to your Moshi.Builder:
             // Ref: https://github.com/square/moshi#reflection
-            val moshi = Moshi.Builder().add(response).add(KotlinJsonAdapterFactory()).build()
+//            val moshi = Moshi.Builder()
+//                .add(response)
+//                .add(KotlinJsonAdapterFactory())
+//                .build()
+//
+//            val sampleData = JSONObject(moshi.toString())
+//
+//            val asteroids = parseAsteroidsJsonResult(sampleData)
 
-            val sampleData = JSONObject(moshi.toString())
-            val asteroids = parseAsteroidsJsonResult(sampleData)
+            val gson = JsonParser().parse(response.toString()).asJsonObject
+
+            val jo2 = JSONObject(gson.toString())
+            val asteroids = parseAsteroidsJsonResult(jo2)
 
             asteroidDao.insert(asteroids)
 
@@ -173,7 +184,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * getPicture() - Daily Picture
+     * getImage() - Daily Picture
      *
      * Issue:
      * When the UI thread of an Android app is blocked for too long, an "Application Not Responding" (ANR) error is triggered.
@@ -184,19 +195,19 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
      * a suspend function, the function get will also a suspend function.
      *
      */
-    private suspend fun getPicture(): ImageOfDay? = withContext(Dispatchers.IO) {
+    private suspend fun getImage(): ImageOfDay? = withContext(Dispatchers.IO) {
 
         // Download and store updated data through the Network, otherwise read information from Room Database
         try {
 
             // Download latest today's picture through the Network
-            val picture = repository.asteroidAPI.getPicture()
+            val image = repository.asteroidAPI.getImage()
 
             // Store latest today's picture into the Database
-            pictureDao.insert(picture)
+            imageDao.insert(image)
 
             //
-            pictureDao.getPicture(picture.url)
+            imageDao.getImage(image.url)
 
         } catch (e: Exception) {
 
