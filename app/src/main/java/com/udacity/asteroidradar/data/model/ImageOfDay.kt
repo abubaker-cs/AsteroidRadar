@@ -18,17 +18,28 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 data class ImageOfDay(
 
-    // Media Type
+    /**
+     * 1. Media Type:
+     * The image of the day could be an image or a video, we are using only the image, to know what
+     * media type is you have to check the media_type field, if this value is “image” you are going
+     * to download and use the image, if it’s video you are going to ignore it.
+     */
     @Json(name = "media_type")
     @ColumnInfo(name = "media_type")
     val mediaType: String? = "",
 
-    // Title
+    /**
+     * 2. Title:
+     * The title of the picture, this is going to be used as content description of the image for Talk back.
+     */
     @Json(name = "title")
     @ColumnInfo(name = "title")
     val title: String? = "",
 
-    // used to map img_src from the JSON to imgSrcUrl in our class
+    /**
+     * 1. URL
+     * Path of the image
+     */
     @PrimaryKey
     @Json(name = "url")
     @ColumnInfo(name = "url")

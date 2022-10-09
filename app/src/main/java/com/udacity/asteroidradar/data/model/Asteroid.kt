@@ -18,43 +18,43 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 data class Asteroid(
 
-    // ID
+    // 1. ID
     @PrimaryKey
     @Json(name = "asteroid_id")
     @ColumnInfo(name = "asteroid_id")
     val id: Long,
 
-    // Code Name
+    // 2. Code Name
     @Json(name = "code_name")
     @ColumnInfo(name = "code_name")
     val codeName: String,
 
-    // Close Approach Date
+    // 3. Close Approach Date
     @Json(name = "close_approach_date")
     @ColumnInfo(name = "close_approach_date")
     val closeApproachDate: String,
 
-    // Absolute Magnitude
+    // 4. Absolute Magnitude
     @Json(name = "absolute_magnitude")
     @ColumnInfo(name = "absolute_magnitude")
     val absoluteMagnitude: Double,
 
-    // Estimated Diameter
+    // 5. Estimated Diameter
     @Json(name = "estimate_diameter")
     @ColumnInfo(name = "estimate_diameter")
     val estimatedDiameter: Double,
 
-    // Relative Velocity
+    // 6. Relative Velocity
     @Json(name = "relative_velocity")
     @ColumnInfo(name = "relative_velocity")
     val relativeVelocity: Double,
 
-    // Distance from Earth
+    // 7. Distance from Earth
     @Json(name = "distance_from_earth")
     @ColumnInfo(name = "distance_from_earth")
     val distanceFromEarth: Double,
 
-    // Hazardous?
+    // 8. Hazardous?
     @Json(name = "danger_status")
     @ColumnInfo(name = "danger_status")
     val isPotentiallyHazardous: Boolean

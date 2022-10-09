@@ -48,7 +48,7 @@ class DetailFragment : Fragment() {
             .setMessage(getString(R.string.astronomical_unit_explanation))
 
             // Cancel Button
-            .setPositiveButton(android.R.string.cancel, null)
+            .setPositiveButton(android.R.string.ok, null)
 
         // Initialize the Custom Dialog
         builder.create().show()
