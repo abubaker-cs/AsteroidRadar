@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar.network
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -8,11 +7,10 @@ import com.google.gson.JsonParser
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
-import com.udacity.asteroidradar.utils.Constants
+import com.udacity.asteroidradar.utils.dailyRecords
+import com.udacity.asteroidradar.utils.weeklyRecords
 import org.json.JSONObject
 import retrofit2.HttpException
-import java.text.SimpleDateFormat
-import java.util.*
 
 class BackgroundWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
@@ -40,8 +38,8 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
 
             //
             val response = repository.asteroidAPI.getAsteroids(
-                getToday(),
-                getSevenDaysLater()
+                dailyRecords(),
+                weeklyRecords()
             )
 
             //
@@ -73,21 +71,4 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
         const val WORK_NAME = "BackgroundWorker"
     }
 
-}
-
-@SuppressLint("WeekBasedYear")
-fun getToday(): String {
-    val calendar = Calendar.getInstance()
-    val currentTime = calendar.time
-    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
-    return dateFormat.format(currentTime)
-}
-
-@SuppressLint("WeekBasedYear")
-fun getSevenDaysLater(): String {
-    val calendar = Calendar.getInstance()
-    calendar.add(Calendar.DAY_OF_YEAR, 7)
-    val currentTime = calendar.time
-    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
-    return dateFormat.format(currentTime)
 }
