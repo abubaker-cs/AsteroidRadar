@@ -119,7 +119,19 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    // getAsteroids() - List of Asteroids
+
+    /**
+     * getAsteroids() - List of Asteroids
+     *
+     * Issue:
+     * When the UI thread of an Android app is blocked for too long, an "Application Not Responding" (ANR) error is triggered.
+     *
+     * Solution:
+     * Instead of running the block in the main-thread, I am using withContext(Dispatchers.IO)
+     * to create a block that runs on the IO thread pool. Moreover since withContext() is itself
+     * a suspend function, the function get will also a suspend function.
+     *
+     */
     private suspend fun getAsteroids(): List<Asteroid> = withContext(Dispatchers.IO) {
 
         // Download and store updated data through the Network, otherwise read information from Room Database
@@ -160,7 +172,18 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     }
 
-    // getPicture() - Daily Picture
+    /**
+     * getPicture() - Daily Picture
+     *
+     * Issue:
+     * When the UI thread of an Android app is blocked for too long, an "Application Not Responding" (ANR) error is triggered.
+     *
+     * Solution:
+     * Instead of running the block in the main-thread, I am using withContext(Dispatchers.IO)
+     * to create a block that runs on the IO thread pool. Moreover since withContext() is itself
+     * a suspend function, the function get will also a suspend function.
+     *
+     */
     private suspend fun getPicture(): ImageOfDay? = withContext(Dispatchers.IO) {
 
         // Download and store updated data through the Network, otherwise read information from Room Database
@@ -186,6 +209,5 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
 
     }
-
 
 }
