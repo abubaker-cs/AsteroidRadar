@@ -1,15 +1,17 @@
-package com.udacity.asteroidradar.network
+package com.udacity.asteroidradar.work
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.udacity.asteroidradar.data.dailyRecords
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
-import com.udacity.asteroidradar.utils.dailyRecords
-import com.udacity.asteroidradar.utils.weeklyRecords
+import com.udacity.asteroidradar.data.weeklyRecords
+import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
+import com.udacity.asteroidradar.repositories.AsteroidsRepository
 import org.json.JSONObject
 import retrofit2.HttpException
 

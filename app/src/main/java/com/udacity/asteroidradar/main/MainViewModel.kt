@@ -7,18 +7,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.udacity.asteroidradar.data.dailyRecords
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.model.ImageOfDay
+import com.udacity.asteroidradar.data.weeklyRecords
 import com.udacity.asteroidradar.main.data.AsteroidState
 import com.udacity.asteroidradar.main.data.PictureState
 import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
-import com.udacity.asteroidradar.network.AsteroidsRepository
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
-import com.udacity.asteroidradar.utils.dailyRecords
-import com.udacity.asteroidradar.utils.weeklyRecords
+import com.udacity.asteroidradar.repositories.AsteroidsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -119,6 +119,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     // getAsteroids() - List of Asteroids
     private suspend fun getAsteroids(): List<Asteroid> = withContext(Dispatchers.IO) {
 
+        // Download and store updated data through the Network, otherwise read information from Room Database
         try {
 
             val response = repository.asteroidAPI.getAsteroids(
@@ -139,7 +140,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
         } catch (e: Exception) {
 
+            //
             e.printStackTrace()
+
+            //
             asteroidDao.getAsteroids()
 
         }
@@ -148,14 +152,29 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     // getPicture() - Daily Picture
     private suspend fun getPicture(): ImageOfDay? = withContext(Dispatchers.IO) {
+
+        // Download and store updated data through the Network, otherwise read information from Room Database
         try {
+
+            // Download latest today's picture through the Network
             val picture = repository.asteroidAPI.getPicture()
+
+            // Store latest today's picture into the Database
             pictureDao.insert(picture)
+
+            //
             pictureDao.getPicture(picture.url)
+
         } catch (e: Exception) {
+
+            //
             e.printStackTrace()
+
+            //
             null
+
         }
+
     }
 
 
