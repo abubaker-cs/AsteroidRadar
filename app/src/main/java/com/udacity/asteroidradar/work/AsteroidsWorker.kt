@@ -31,9 +31,9 @@ class BackgroundWorker(appContext: Context, params: WorkerParameters) :
         AsteroidDatabase.getDatabase(applicationContext).imageOfDayReference()
     }
 
-
     /**
-     *
+     * doWork()
+     * This function initializes the suspending work.
      */
     override suspend fun doWork(): Result {
 
