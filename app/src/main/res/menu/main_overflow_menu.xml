@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <item
         android:id="@+id/show_week"
+        android:icon="@drawable/ic_baseline_view_week_24"
         android:title="@string/next_week_asteroids"
+        app:showAsAction="withText"
         />
     <item
         android:id="@+id/show_today"
+        android:icon="@drawable/ic_baseline_today_24"
         android:title="@string/today_asteroids"
+        app:showAsAction="withText"
         />
     <item
         android:id="@+id/show_saved"
+        android:icon="@drawable/ic_baseline_save_24"
         android:title="@string/saved_asteroids"
+        app:showAsAction="withText"
         />
 </menu>

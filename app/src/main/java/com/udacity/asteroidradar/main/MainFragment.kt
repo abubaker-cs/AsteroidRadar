@@ -1,7 +1,9 @@
 package com.udacity.asteroidradar.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -94,11 +96,17 @@ class MainFragment : Fragment() {
     /**
      * Inflates the overflow menu that contains filtering options.
      */
+    @SuppressLint("RestrictedApi")
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        // This will ensure that the menu icons are being displayed
+        (menu as? MenuBuilder)?.setOptionalIconsVisible(true)
+
         inflater.inflate(R.menu.main_overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
 
     /**
      * We need to provide a menu option so the user can change the filter
