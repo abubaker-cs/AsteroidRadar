@@ -32,14 +32,14 @@ class DetailFragment : Fragment() {
 
         // Initialize Custom Dialog
         binding.helpButton.setOnClickListener {
-            displayAstronomicalUnitExplanationDialog()
+            infoDialog()
         }
 
         return binding.root
     }
 
     // Custom Dialog
-    private fun displayAstronomicalUnitExplanationDialog() {
+    private fun infoDialog() {
 
         // Configurations for the Custom Dialog
         val builder = AlertDialog.Builder(requireActivity())
@@ -47,10 +47,12 @@ class DetailFragment : Fragment() {
             // Description of the Astronomical Unit
             .setMessage(getString(R.string.astronomical_unit_explanation))
 
-            // Cancel Button
+            // Ok Button
             .setPositiveButton(android.R.string.ok, null)
 
         // Initialize the Custom Dialog
         builder.create().show()
+
     }
+
 }
