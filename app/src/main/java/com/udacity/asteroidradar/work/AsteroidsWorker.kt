@@ -14,6 +14,7 @@ import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.repositories.AsteroidsRepository
 import org.json.JSONObject
 
+@Suppress("DEPRECATION")
 class AsteroidWorker(ctx: Context, params: WorkerParameters) :
     CoroutineWorker(ctx, params) {
 

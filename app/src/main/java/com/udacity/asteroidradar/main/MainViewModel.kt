@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
+@Suppress("DEPRECATION")
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     // Repository
