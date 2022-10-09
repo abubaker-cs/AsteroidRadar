@@ -33,12 +33,11 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val repository: AsteroidsRepository by lazy { AsteroidsRepository() }
 
     // The internal MutableLiveData String that stores the status of the most recent request
-    private val _state: MutableStateFlow<AsteroidState> =
+    private val _status: MutableStateFlow<AsteroidState> =
         MutableStateFlow(AsteroidState(true, emptyList()))
 
     // The external immutable LiveData for the request status String
-    val state = _state.asStateFlow()
-
+    val status = _status.asStateFlow()
 
     // LiveData Asteroid with an internal Mutable and external LiveData
     private val _picture: MutableLiveData<PictureState> =
@@ -47,7 +46,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     val picture: LiveData<PictureState> = _picture
 
     //
-    val loadingState = state.map { value -> value.loading }
+    val downloadingState = status.map { value -> value.downloading }
 
 
     // LiveData Asteroid with an internal Mutable and external LiveData
@@ -77,7 +76,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
         viewModelScope.launch {
             val asteroids = getAsteroids()
-            _state.value = AsteroidState(false, asteroids)
+            _status.value = AsteroidState(false, asteroids)
             cachedAsteroids = asteroids
 
             val pictureOfDay = getPicture()
@@ -101,17 +100,17 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                             dailyRecords(),
                             weeklyRecords()
                         )
-                    _state.value = AsteroidState(false, asteroids)
+                    _status.value = AsteroidState(false, asteroids)
                 }
 
                 // Today
                 AsteroidApiFilter.SHOW_TODAY -> {
                     val asteroids = asteroidDao.getAsteroidToday(dailyRecords())
-                    _state.value = AsteroidState(false, asteroids)
+                    _status.value = AsteroidState(false, asteroids)
                 }
                 else -> {
                     val asteroids = asteroidDao.getAsteroids()
-                    _state.value = AsteroidState(false, asteroids)
+                    _status.value = AsteroidState(false, asteroids)
                 }
             }
         }

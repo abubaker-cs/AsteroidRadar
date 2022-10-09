@@ -23,9 +23,10 @@ class MainFragment : Fragment() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
-    //
+    // Reference to the AsteroidsAdapter
     private lateinit var asteroidAdapter: AsteroidsAdapter
 
+    // Reference for the fragment_main.xml which I will later on inflate in the onCreateView()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -53,28 +54,33 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     *
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // I will be using the LinearLayout mode for the RecyclerView
+        binding.asteroidRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+        // Defining and binding the AsteroidsAdapter to the RecyclerView
         asteroidAdapter = AsteroidsAdapter { asteroid ->
             this.findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
         }
-
-        binding.asteroidRecycler.layoutManager = LinearLayoutManager(requireContext())
-
         binding.asteroidRecycler.adapter = asteroidAdapter
 
 
         /**
-         * TODO Fix Loading Data in RecyclerView
+         * Asteroid
          */
-
-        // Asteroid
-        viewModel.state.onEach { asteroidState ->
+        viewModel.status.onEach { asteroidState ->
             asteroidAdapter.setAsteroids(asteroidState.asteroids)
         }.launchIn(lifecycleScope)
 
 
-        // Downloading ?
-        viewModel.loadingState.onEach { isDownloading ->
+        /**
+         * Downloading
+         */
+        viewModel.downloadingState.onEach { isDownloading ->
             binding.downloadingProgressBar.isVisible = isDownloading
         }.launchIn(lifecycleScope)
     }
