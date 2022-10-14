@@ -10,9 +10,11 @@ object Constants {
     //
     const val API_KEY = BuildConfig.nasaApiKey
 
-    //
-    // https://googlesamples.github.io/android-custom-lint-rules/checks/WeekBasedYear.md.html
+    // Issue:
     // YYYY-MM-dd causes @SuppressLint("WeekBasedYear") ERROR, so I am replacing it with MM/dd/yyyy
+    //
+    // Week Based Year:
+    // https://googlesamples.github.io/android-custom-lint-rules/checks/WeekBasedYear.md.html
     const val API_QUERY_DATE_FORMAT = "MM/dd/yyyy"
 
     //
