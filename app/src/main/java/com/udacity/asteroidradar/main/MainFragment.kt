@@ -1,11 +1,12 @@
 package com.udacity.asteroidradar.main
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.view.menu.MenuBuilder
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -57,12 +58,17 @@ class MainFragment : Fragment() {
     }
 
     /**
-     *
+     * IMPORTANT NOTE:
+     * The setHasOptionsMenu(true) has been depreciated, we will be using addMenuProvider():
+     * https://developer.android.com/jetpack/androidx/releases/activity#1.4.0-alpha01
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // I will be using the LinearLayout mode for the RecyclerView
         binding.asteroidRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+        // The usage of an interface lets you inject your own implementation
+        val menuHost: MenuHost = requireActivity()
 
         // Defining and binding the AsteroidsAdapter to the RecyclerView
         asteroidAdapter = AsteroidsAdapter { asteroid ->
@@ -85,44 +91,42 @@ class MainFragment : Fragment() {
         viewModel.downloadingState.onEach { isDownloading ->
             binding.downloadingProgressBar.isVisible = isDownloading
         }.launchIn(lifecycleScope)
+
+        // Add menu items without using the Fragment Menu APIs
+        // Note how we can tie the MenuProvider to the viewLifecycleOwner
+        // and an optional Lifecycle.State (here, RESUMED) to indicate when
+        // the menu should be visible
+        menuHost.addMenuProvider(object : MenuProvider {
+
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+
+                // Add menu items here
+                menuInflater.inflate(R.menu.main_overflow_menu, menu)
+
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+
+                // Handle the menu selection
+                viewModel.updateFilter(
+                    when (menuItem.itemId) {
+                        R.id.show_week -> AsteroidApiFilter.SHOW_WEEK
+                        R.id.show_today -> AsteroidApiFilter.SHOW_TODAY
+                        else -> AsteroidApiFilter.SHOW_SAVED
+                    }
+                )
+
+                return true
+            }
+
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    /**
-     * Inflates the overflow menu that contains filtering options.
-     */
-    @SuppressLint("RestrictedApi")
-    @Deprecated("Deprecated in Java")
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-
-        // This will ensure that the menu icons are being displayed
-        (menu as? MenuBuilder)?.setOptionalIconsVisible(true)
-
-        inflater.inflate(R.menu.main_overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-
-    /**
-     * We need to provide a menu option so the user can change the filter
-     */
-    @Deprecated("Deprecated in Java", ReplaceWith("true"))
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        viewModel.updateFilter(
-            when (item.itemId) {
-                R.id.show_week -> AsteroidApiFilter.SHOW_WEEK
-                R.id.show_today -> AsteroidApiFilter.SHOW_TODAY
-                else -> AsteroidApiFilter.SHOW_SAVED
-            }
-        )
-
-        return true
     }
 
 }
