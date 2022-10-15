@@ -26,7 +26,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
-@Suppress("DEPRECATION")
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     // Repository
@@ -148,7 +147,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             )
 
             //
-            val gson = JsonParser().parse(response.toString()).asJsonObject
+            val gson = JsonParser.parseString(response.toString()).asJsonObject
             val responseInString = JSONObject(gson.toString())
             val asteroids = parseAsteroidsJsonResult(responseInString)
 

@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar.main
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -109,5 +110,13 @@ class AsteroidsAdapter(private val clickListener: (asteroid: Asteroid) -> Unit) 
      *
      * @return The total number of items in this adapter.
      */
-    override fun getItemCount() = asteroids.size
+    override fun getItemCount(): Int {
+
+        val totalSize = asteroids.size
+
+        // TODO: Total Records
+        Log.i("Total Records: ", totalSize.toString())
+
+        return asteroids.size
+    }
 }

@@ -56,7 +56,6 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         // setHasOptionsMenu(true)
-
         return binding.root
     }
 
