@@ -21,7 +21,7 @@ object Constants {
      * Solution:
      * YYYY-MM-dd causes @SuppressLint("WeekBasedYear") ERROR, so I am replacing it with MM/dd/yyyy
      */
-    const val API_QUERY_DATE_FORMAT = "MM/dd/yyyy"
+    const val API_QUERY_DATE_FORMAT = "YYYY-MM-dd"
 
     //
     const val DEFAULT_END_DATE_DAYS = 7

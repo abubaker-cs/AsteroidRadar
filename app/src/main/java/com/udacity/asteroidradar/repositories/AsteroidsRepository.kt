@@ -1,13 +1,10 @@
 package com.udacity.asteroidradar.repositories
 
 import com.google.gson.JsonObject
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.data.model.ImageOfDay
 import com.udacity.asteroidradar.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,23 +15,9 @@ class AsteroidsRepository {
     init {
 
         /**
-         * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
-         * full Kotlin compatibility.
-         */
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-
-        /**
          * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
          * object.
          */
-        val retrofits: Retrofit = Retrofit
-            .Builder()
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl(Constants.BASE_URL)
-            .build()
-
         val retrofit: Retrofit = Retrofit
             .Builder()
             .baseUrl(Constants.BASE_URL)
@@ -53,6 +36,7 @@ class AsteroidsRepository {
     interface AsteroidAPI {
 
         // Get the updated record of Asteroids
+        // Example: https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=Constants.API_KEY
         @GET("neo/rest/v1/feed/")
         suspend fun getAsteroids(
             @Query("start_date") startDate: String,
@@ -62,10 +46,23 @@ class AsteroidsRepository {
 
 
         // Get the Daily Image
+        // Example: https://api.nasa.gov/planetary/apod/?api_key=Constants.API_KEY
+        /**
+         * Received JSON Format:
+         * ====================
+         * 1. date
+         * 2. explanation
+         * 3. hdurl
+         * 4. media_type
+         * 5. service_version
+         * 6. title
+         * 7. url
+         */
         @GET("planetary/apod/")
         suspend fun getImage(
             @Query("api_key") apiKey: String = Constants.API_KEY
         ): ImageOfDay
+
     }
 
 }

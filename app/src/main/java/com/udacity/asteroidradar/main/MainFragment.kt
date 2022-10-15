@@ -1,7 +1,9 @@
 package com.udacity.asteroidradar.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
@@ -16,6 +18,7 @@ import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+
 
 class MainFragment : Fragment() {
 
@@ -52,7 +55,7 @@ class MainFragment : Fragment() {
         // Giving the binding access to the MainViewModel
         binding.viewModel = viewModel
 
-        setHasOptionsMenu(true)
+        // setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -98,7 +101,13 @@ class MainFragment : Fragment() {
         // the menu should be visible
         menuHost.addMenuProvider(object : MenuProvider {
 
+            @SuppressLint("RestrictedApi")
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+
+                // This will display icons for the menu items
+                if (menu is MenuBuilder) {
+                    menu.setOptionalIconsVisible(true)
+                }
 
                 // Add menu items here
                 menuInflater.inflate(R.menu.main_overflow_menu, menu)
