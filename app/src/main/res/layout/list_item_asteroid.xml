@@ -16,30 +16,30 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="6dp"
-        app:cardCornerRadius="15sp"
-        app:cardElevation="20sp"
+        android:layout_marginStart="@dimen/unit_12"
+        android:layout_marginTop="@dimen/unit_6"
+        android:layout_marginEnd="@dimen/unit_12"
+        android:layout_marginBottom="@dimen/unit_6"
+        app:cardCornerRadius="@dimen/card_radius"
+        app:cardElevation="@dimen/card_elevation"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/app_bg_card"
-            android:padding="4dp"
+            android:padding="@dimen/card_item_padding"
             >
 
             <!-- Asteroid Name -->
             <TextView
                 android:id="@+id/codenameTextView"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/unit_0"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:padding="8dp"
+                android:layout_marginTop="@dimen/unit_8"
+                android:padding="@dimen/unit_8"
                 android:textColor="@color/text_yellow"
-                android:textSize="20sp"
+                android:textSize="@dimen/item_name_txt_size"
                 app:codeName="@{asteroid}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -49,14 +49,14 @@
             <!-- Date -->
             <TextView
                 android:id="@+id/dateTextView"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/unit_0"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:padding="8dp"
+                android:layout_marginEnd="@dimen/unit_8"
+                android:layout_marginBottom="@dimen/unit_16"
+                android:padding="@dimen/unit_8"
                 android:text="@{asteroid.closeApproachDate}"
                 android:textColor="@color/default_text_color"
-                android:textSize="18sp"
+                android:textSize="@dimen/item_date_txt_size"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/codenameTextView"
                 tools:text="Date"
@@ -65,9 +65,9 @@
             <!-- Status Icon -->
             <ImageView
                 android:id="@+id/icon_hazard_status"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="16dp"
+                android:layout_width="@dimen/item_thumbnail_width"
+                android:layout_height="@dimen/item_thumbnail_height"
+                android:layout_margin="@dimen/unit_16"
                 android:contentDescription="@string/list_item_thumbnail_desc"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
