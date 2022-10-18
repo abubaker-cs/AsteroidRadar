@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.udacity.asteroidradar.data.model.Asteroid
 
 /**
- * 02
+ * 02 - AsteroidDao
  *
  * Data Access Object for database interaction.
  */
