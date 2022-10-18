@@ -5,7 +5,6 @@ all the detected asteroids in a period of time, their data (Size, velocity, dist
 if they are potentially hazardous.
 
 The app consists of two screens:
-
 - A Main screen with a list of all the detected asteroids
 - A Details screen that displays the NASA image of the day and the detailed information about the
   asteroid once it´s selected in the Main screen. The main screen also shows the NASA image of the
