@@ -14,6 +14,5 @@ class MainActivity : AppCompatActivity() {
 /**
  * TODO 01 - App Icon
  * TODO 02 - Add comments throughout the project
- * TODO 03 - Toast Message: No. of Records: Daily / Weekly / Offline
  * TODO 04 - Update README.md
  */
