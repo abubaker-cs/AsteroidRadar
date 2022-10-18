@@ -22,8 +22,7 @@
         <!-- Thumbnail: Daily Asteroid Picture -->
         <FrameLayout
             android:id="@+id/daily_thumbnail_container"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/daily_thumbnail_wrapper_height"
+            style="@style/list_fl_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,26 +30,16 @@
 
             <ImageView
                 android:id="@+id/daily_thumbnail_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
+                style="@style/list_thumbnail_style"
                 android:contentDescription="@string/daily_thumbnail_desc"
-                android:scaleType="centerCrop"
                 app:imageOfTheDay="@{viewModel.picture}"
                 app:srcCompat="@drawable/daily_thumbnail_placeholder"
                 />
 
             <TextView
                 android:id="@+id/daily_thumbnail_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/thumbnail_desc_bg"
-                android:padding="@dimen/thumbnail_desc_padding"
+                style="@style/list_thumbnail_desc_style"
                 android:text="@string/image_of_the_day"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/daily_thumbnail_desc_size"
-                android:textStyle="bold"
                 />
         </FrameLayout>
 
@@ -58,9 +47,7 @@
         <!-- RecyclerView: asteroids_recycler -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/asteroids_recycler"
-            android:layout_width="@dimen/width_null"
-            android:layout_height="@dimen/height_null"
-            android:paddingTop="@dimen/rv_padding_top"
+            style="@style/list_rv_style"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,10 +61,7 @@
         <!-- ProgressBar: Loading State -->
         <ProgressBar
             android:id="@+id/downloading_progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:visibility="gone"
+            style="@style/list_pb_style"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

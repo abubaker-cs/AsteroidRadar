@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Details: Item Description -->
     <style name="details_desc_style">
         <item name="android:layout_marginTop">@dimen/tv_margin</item>
         <item name="android:layout_width">match_parent</item>
@@ -16,6 +17,7 @@
         <item name="android:textSize">@dimen/list_tv_desc_size</item>
     </style>
 
+    <!-- Details: Item Value -->
     <style name="details_value_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -24,22 +26,67 @@
         <item name="android:textSize">@dimen/list_tv_value_size</item>
     </style>
 
+    <!-- Details: Help Icon -->
     <style name="details_help_icon_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/iv_padding</item>
     </style>
 
+    <!-- Details: ScrollView -->
     <style name="details_sv_style">
         <item name="android:layout_width">@dimen/width_null</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/sv_padding</item>
     </style>
 
+    <!-- Details: Thumbnail -->
     <style name="details_thumbnail_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:adjustViewBounds">true</item>
     </style>
+
+    <!-- List: Thumbnail (Image) -->
+    <style name="list_thumbnail_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!-- List: Thumbnail Description -->
+    <style name="list_thumbnail_desc_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@color/thumbnail_desc_bg</item>
+        <item name="android:padding">@dimen/thumbnail_desc_padding</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/daily_thumbnail_desc_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- List: FrameLayout -->
+    <style name="list_fl_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/daily_thumbnail_wrapper_height</item>
+    </style>
+
+    <!-- List: RecyclerView -->
+    <style name="list_rv_style">
+        <item name="android:layout_width">@dimen/width_null</item>
+        <item name="android:layout_height">@dimen/height_null</item>
+        <item name="android:paddingTop">@dimen/rv_padding_top</item>
+    </style>
+
+    <!-- List: ProgressBar -->
+    <style name="list_pb_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
 
 </resources>
