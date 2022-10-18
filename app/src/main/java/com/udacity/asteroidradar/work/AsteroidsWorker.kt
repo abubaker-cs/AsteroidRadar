@@ -8,10 +8,10 @@ import com.google.gson.JsonParser
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
-import com.udacity.asteroidradar.data.todayCalendar
-import com.udacity.asteroidradar.data.weeklyCalendar
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.repositories.AsteroidsRepository
+import com.udacity.asteroidradar.utils.currentWeekCalendar
+import com.udacity.asteroidradar.utils.todayCalendar
 import org.json.JSONObject
 
 @Suppress("DEPRECATION")
@@ -43,7 +43,7 @@ class AsteroidWorker(ctx: Context, params: WorkerParameters) :
 
             val response = repository.asteroidAPI.getAsteroids(
                 todayCalendar(),
-                weeklyCalendar()
+                currentWeekCalendar()
             )
 
             //

@@ -118,9 +118,9 @@ class MainFragment : Fragment() {
                 // Handle the menu selection
                 viewModel.updateFilter(
                     when (menuItem.itemId) {
-                        R.id.show_week -> AsteroidApiFilter.SHOW_WEEK
-                        R.id.show_today -> AsteroidApiFilter.SHOW_TODAY
-                        else -> AsteroidApiFilter.SHOW_SAVED
+                        R.id.show_week -> AsteroidApiFilter.SHOW_CURRENT_WEEK_DATA
+                        R.id.show_today -> AsteroidApiFilter.SHOW_TODAY_DATA
+                        else -> AsteroidApiFilter.SHOW_OFFLINE_SAVED_DATA
                     }
                 )
 

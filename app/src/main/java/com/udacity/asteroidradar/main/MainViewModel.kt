@@ -95,7 +95,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             when (filter) {
 
                 // Week: Display full list of all Asteroids for the week
-                AsteroidApiFilter.SHOW_WEEK -> {
+                AsteroidApiFilter.SHOW_CURRENT_WEEK_DATA -> {
                     val asteroids =
                         asteroidDao.getAsteroidsFromThisWeek(
 
@@ -110,7 +110,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 }
 
                 // Today: Display only the Asteroids related to today
-                AsteroidApiFilter.SHOW_TODAY -> {
+                AsteroidApiFilter.SHOW_TODAY_DATA -> {
                     val asteroids = asteroidDao.getAsteroidToday(todayCalendar())
                     _status.value = AsteroidState(false, asteroids)
                 }
