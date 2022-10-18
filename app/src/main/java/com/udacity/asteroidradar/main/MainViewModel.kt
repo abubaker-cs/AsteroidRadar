@@ -161,9 +161,6 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             //
             asteroidDao.getAsteroids()
 
-            // LOG
-
-
         } catch (e: Exception) {
 
             //

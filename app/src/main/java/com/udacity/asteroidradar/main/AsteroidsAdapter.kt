@@ -20,20 +20,6 @@ class AsteroidsAdapter(private val onClickListener: (asteroid: Asteroid) -> Unit
         notifyDataSetChanged()
     }
 
-    /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [Asteroid]
-     * has been updated.
-     */
-//    companion object DiffCallback : DiffUtil.ItemCallback<Asteroid>() {
-//        override fun areItemsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
-//            return oldItem === newItem
-//        }
-//
-//        override fun areContentsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
-//            return oldItem.id == newItem.id
-//        }
-//    }
-
     // Bind data using the list_item_asteroid.xml file
     inner class AsteroidViewHolder(private val binding: ListItemAsteroidBinding) :
         RecyclerView.ViewHolder(binding.root) {
