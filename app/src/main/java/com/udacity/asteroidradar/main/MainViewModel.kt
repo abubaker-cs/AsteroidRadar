@@ -156,7 +156,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
             )
 
-            // Convert Kotlin Data Class from JSON using GSON
+            // Gson is a library that can be used to convert Java Objects into their JSON representation
             val gson = JsonParser.parseString(response.toString()).asJsonObject
             val responseInString = JSONObject(gson.toString())
             val asteroids = parseAsteroidsJsonResult(responseInString)

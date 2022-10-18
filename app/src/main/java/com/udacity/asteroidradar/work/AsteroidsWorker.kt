@@ -46,18 +46,21 @@ class AsteroidWorker(ctx: Context, params: WorkerParameters) :
                 currentWeekCalendar()
             )
 
-            //
+            // Gson is a library that can be used to convert Java Objects into their JSON representation
             val gson = JsonParser().parse(response.toString()).asJsonObject
             val responseInString = JSONObject(gson.toString())
             val asteroids = parseAsteroidsJsonResult(responseInString)
 
+            // Insert updated list of asteroids into the Room Database
             asteroidDao.insert(asteroids)
 
-            // Update daily image
+            // Get the updated daily image from the network and store it in the database
             val image = repository.asteroidAPI.getImage()
             imageDao.insert(image)
 
-            //
+            // Returns an instance of  ListenableWorker.Result that can be used to indicate that
+            // the work completed successfully. Any work that depends on this can be executed as
+            // long as all of its other dependencies and constraints are met.
             Result.success()
 
         } catch (throwable: Throwable) {
