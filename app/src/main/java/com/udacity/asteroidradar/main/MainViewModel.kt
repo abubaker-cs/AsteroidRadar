@@ -44,9 +44,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     val picture: LiveData<ImageState> = _picture
 
-    //
     val downloadingState = status.map { value -> value.downloading }
-
 
     // LiveData Asteroid with an internal Mutable and external LiveData
     private val _asteroid = MutableLiveData<List<Asteroid>>()
@@ -67,23 +65,25 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         AsteroidDatabase.getDatabase(app).imageOfDayReference()
     }
 
-
     /**
      * Call getAsteroid() on init so we can display status immediately.
      */
     init {
 
+        // Coroutine that will be canceled when the ViewModel is cleared.
         viewModelScope.launch {
+
+            // List of Asteroids
             val asteroids = getAsteroids()
             _status.value = AsteroidState(false, asteroids)
             cachedAsteroids = asteroids
 
+            // Daily Image of Asteroid (Thumbnail)
             val pictureOfDay = getImage()
             _picture.value = ImageState(pictureOfDay)
         }
 
     }
-
 
     /**
      * To re-query the data by calling getMarsRealEstateProperties with the new filter
@@ -91,11 +91,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     fun updateFilter(filter: AsteroidApiFilter) {
         viewModelScope.launch {
 
-            //
             when (filter) {
 
                 // Week: Display full list of all Asteroids for the week
                 AsteroidApiFilter.SHOW_CURRENT_WEEK_DATA -> {
+
+                    //
                     val asteroids =
                         asteroidDao.getAsteroidsFromThisWeek(
 
@@ -106,15 +107,19 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                             currentWeekCalendar()
 
                         )
+
+                    //
                     _status.value = AsteroidState(false, asteroids)
                 }
 
-                // Today: Display only the Asteroids related to today
+                // Today: Display only the Asteroids related to today's incoming asteroids
                 AsteroidApiFilter.SHOW_TODAY_DATA -> {
                     val asteroids = asteroidDao.getAsteroidToday(todayCalendar())
                     _status.value = AsteroidState(false, asteroids)
                 }
                 else -> {
+
+                    // Get the list of all saved Asteroids
                     val asteroids = asteroidDao.getAsteroids()
                     _status.value = AsteroidState(false, asteroids)
                 }
@@ -151,22 +156,24 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
             )
 
-            //
+            // Convert Kotlin Data Class from JSON using GSON
             val gson = JsonParser.parseString(response.toString()).asJsonObject
             val responseInString = JSONObject(gson.toString())
             val asteroids = parseAsteroidsJsonResult(responseInString)
 
+            // Insert updated list of asteroids into the Room Database
             asteroidDao.insert(asteroids)
 
-            //
+            // Retrieve updated list of asteroids from the Room Database
             asteroidDao.getAsteroids()
 
         } catch (e: Exception) {
 
-            //
+            // Print Error (in the console)
             e.printStackTrace()
 
-            //
+            // If now network connection is found, then simply retrieve the complete List of
+            // all saved Asteroids from the Room Database
             asteroidDao.getAsteroids()
 
         }
@@ -196,17 +203,14 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             // Store latest today's picture into the Database
             imageDao.insert(image)
 
-            //
+            // Get the recently stored path of the image (URL) from the database
             imageDao.getImage(image.url)
 
         } catch (e: Exception) {
 
-            //
+            // Print Error (in the console)
             e.printStackTrace()
-
-            //
             null
-
         }
 
     }
