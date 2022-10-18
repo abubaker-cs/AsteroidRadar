@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.udacity.asteroidradar.data.model.ImageOfDay
 
 /**
- * 02 ImageOfDayDao
+ * 02 ImageOfDayDao (SQL Queries)
  *
  * Data Access Object for database interaction.
  */
