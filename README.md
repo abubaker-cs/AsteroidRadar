@@ -4,47 +4,36 @@ Asteroid Radar is an app to view the asteroids detected by NASA that pass near E
 all the detected asteroids in a period of time, their data (Size, velocity, distance to Earth) and
 if they are potentially hazardous.
 
-The app consists of two screens: A Main screen with a list of all the detected asteroids and a
-Details screen that displays the data of that asteroid once it´s selected in the Main screen list.
-The main screen also shows the NASA image of the day to make the app more striking.
+The app consists of two screens:
 
-The application:
+1. A Main screen with a list of all the detected asteroids
+2. A Details screen that displays the NASA image of the day and the detailed information about the
+   asteroid once it´s selected in the Main screen. The main screen also shows the NASA image of the
+   day to make the app more striking.
 
 - Includes the Main screen with a list of clickable asteroids
-- Includes a Details screen that displays the selected asteroid data once it’s clicked in the Main
-  screen
-- Downloads and parses data from the NASA NeoWS (Near Earth Object Web Service) API.
+- Includes a Details screen that displays the selected asteroid data
+- Downloads and parses data from the NASA NeoWS API.
 - Once an asteroid is saved in the database, the list of asteroids is displayed
 - The asteroids data is cached by using a worker, so it downloads and saves week asteroids in
-  background when device is charging and wifi is enabled, as well as deleted the asteroids data of
-  the previous day
-- App works in multiple screen sizes and orientations, also it provides talk back and push button
-  navigation.
-
-## Instructions for using API
-
-To build this project the NASA NeoWS (Near Earth Object Web Service) API is used, which can be found
-here:
-https://api.nasa.gov/
-
-In order to run the app, you need an API Key which is provided for you in that same link, just fill
-the fields in the form and click Signup.
+  background.
 
 ## Dependencies
 
-The most important dependencies used are:
+Some important dependencies used are:
 
-- Retrofit to download the data from the Internet.
+- Coroutines and WorkManager
+- GSON Library
+- Retrofit with Moshi + Scalars Converters to download and convert the data from the Internet.
 - Moshi to convert the JSON data we are downloading to usable data in form of custom classes.
-- Picasso to download and cache images.
-- RecyclerView to display the asteroids in a list.
+- Glide - An image loading and caching library
+- CardView, RecyclerView to display the asteroids in a list.
 
 The following components from the Jetpack library are used:
 
 - ViewModel
 - Room
-- LiveData
-- Data Binding
+- LiveData and Data Binding
 - Navigation
 
 ## Built With
