@@ -20,9 +20,11 @@ The app consists of two screens:
 
 ## Dependencies
 
-Some important dependencies used are:
+Some important dependencies and features used are:
 
-- Coroutines and WorkManager
+- Coroutines
+- WorkManager for running predictor tasks in the background
+- MutableStateFlow
 - GSON Library
 - Retrofit with Moshi + Scalars Converters to download and convert the data from the Internet.
 - Moshi to convert the JSON data we are downloading to usable data in form of custom classes.
