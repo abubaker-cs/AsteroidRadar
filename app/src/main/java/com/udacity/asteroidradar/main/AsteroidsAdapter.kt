@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar.main
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,17 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.databinding.ListItemAsteroidBinding
 
-
 class AsteroidsAdapter(private val onClickListener: (asteroid: Asteroid) -> Unit) :
     RecyclerView.Adapter<AsteroidsAdapter.AsteroidViewHolder>() {
 
     private lateinit var asteroids: List<Asteroid>
     private lateinit var binding: ListItemAsteroidBinding
 
-
+    @SuppressLint("NotifyDataSetChanged")
     fun setAsteroids(data: List<Asteroid>) {
+
         this.asteroids = data
+
+        // Notify any registered observers that the data set has changed.
         notifyDataSetChanged()
+
     }
 
     // Bind data using the list_item_asteroid.xml file
@@ -26,10 +30,9 @@ class AsteroidsAdapter(private val onClickListener: (asteroid: Asteroid) -> Unit
 
         fun bind(clickListener: (asteroid: Asteroid) -> Unit, asteroid: Asteroid) {
 
-            //
+            // Bind data with asteroid variable stored in the list_item_asteroid.xml file
             binding.asteroid = asteroid
 
-            //
             binding.root.setOnClickListener {
                 clickListener(asteroid)
             }
@@ -46,6 +49,7 @@ class AsteroidsAdapter(private val onClickListener: (asteroid: Asteroid) -> Unit
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
 
+        // Inflate list_item_asteroid.xml file
         binding =
             ListItemAsteroidBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -59,10 +63,9 @@ class AsteroidsAdapter(private val onClickListener: (asteroid: Asteroid) -> Unit
      */
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
 
-        //
+        // Get current position of the asteroid's record
         val asteroid = asteroids[position]
 
-        //
         holder.bind(onClickListener, asteroid)
 
     }
@@ -74,11 +77,13 @@ class AsteroidsAdapter(private val onClickListener: (asteroid: Asteroid) -> Unit
      */
     override fun getItemCount(): Int {
 
+        // Get Total Size of the List
         val totalSize = asteroids.size
 
         // Printout List of Total Fetched Records from the API or Offline Room Database
         Log.i("Total Records: ", totalSize.toString())
 
+        // Return Total Size of the List
         return asteroids.size
     }
 }
