@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
 /**
- * 01
+ * 01 - Table's Structure: table_image
  *
  * ImageOfDay entity to be stored in the table_image.
  */
