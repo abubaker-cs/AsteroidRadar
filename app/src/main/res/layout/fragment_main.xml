@@ -55,7 +55,7 @@
         </FrameLayout>
 
 
-        <!-- RecyclerView: asteroid_recycler -->
+        <!-- RecyclerView: asteroids_recycler -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/asteroids_recycler"
             android:layout_width="@dimen/width_null"

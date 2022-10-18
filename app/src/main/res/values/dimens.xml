@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="width_null">0dp</dimen>
+    <dimen name="height_null">0dp</dimen>
 
-
-    <dimen name="unit_2">2dp</dimen>
-    <dimen name="unit_10">10dp</dimen>
-    <dimen name="unit_14">14dp</dimen>
-    <dimen name="unit_16">16dp</dimen>
-    <dimen name="unit_18">18dp</dimen>
-    <dimen name="unit_20">20dp</dimen>
+    <dimen name="tv_margin">16dp</dimen>
 
     <dimen name="margin_base">6dp</dimen>
     <dimen name="margin_standard">12dp</dimen>
-
 
     <dimen name="card_padding">4dp</dimen>
     <dimen name="txt_padding">8dp</dimen>
@@ -22,10 +16,10 @@
     <dimen name="daily_thumbnail_desc_size">20sp</dimen>
 
     <dimen name="rv_padding_top">6dp</dimen>
+    <dimen name="hazard_status_icon_margin">16dp</dimen>
 
     <dimen name="item_thumbnail_width">64dp</dimen>
     <dimen name="item_thumbnail_height">64dp</dimen>
-
 
     <dimen name="item_name_txt_size">20sp</dimen>
     <dimen name="item_date_txt_size">18sp</dimen>
@@ -34,6 +28,5 @@
 
     <dimen name="card_radius">16sp</dimen>
     <dimen name="card_elevation">20sp</dimen>
-    <dimen name="height_null">0dp</dimen>
 
 </resources>
