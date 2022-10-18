@@ -1,12 +1,12 @@
-package com.udacity.asteroidradar.data
+package com.udacity.asteroidradar.utils
 
 import android.annotation.SuppressLint
-import com.udacity.asteroidradar.utils.Constants
 import java.text.SimpleDateFormat
 import java.util.*
 
+// Weekly Calendar (based on YYYY-MM-dd Pattern)
 @SuppressLint("WeekBasedYear")
-fun weeklyRecords(): String {
+fun currentWeekCalendar(): String {
 
     // This method is used with calendar object to get the instance of calendar according to current time zone
     // =======================================================================================================

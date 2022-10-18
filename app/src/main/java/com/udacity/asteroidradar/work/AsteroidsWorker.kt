@@ -5,11 +5,11 @@ import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.google.gson.JsonParser
-import com.udacity.asteroidradar.data.dailyRecords
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
-import com.udacity.asteroidradar.data.weeklyRecords
+import com.udacity.asteroidradar.data.todayCalendar
+import com.udacity.asteroidradar.data.weeklyCalendar
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.repositories.AsteroidsRepository
 import org.json.JSONObject
@@ -42,8 +42,8 @@ class AsteroidWorker(ctx: Context, params: WorkerParameters) :
         return try {
 
             val response = repository.asteroidAPI.getAsteroids(
-                dailyRecords(),
-                weeklyRecords()
+                todayCalendar(),
+                weeklyCalendar()
             )
 
             //

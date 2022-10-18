@@ -6,18 +6,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParser
-import com.udacity.asteroidradar.data.dailyRecords
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.database.dao.AsteroidDao
 import com.udacity.asteroidradar.data.database.dao.ImageOfDayDao
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.model.ImageOfDay
-import com.udacity.asteroidradar.data.weeklyRecords
 import com.udacity.asteroidradar.main.data.AsteroidState
 import com.udacity.asteroidradar.main.data.ImageState
 import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.repositories.AsteroidsRepository
+import com.udacity.asteroidradar.utils.currentWeekCalendar
+import com.udacity.asteroidradar.utils.todayCalendar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -98,15 +98,20 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 AsteroidApiFilter.SHOW_WEEK -> {
                     val asteroids =
                         asteroidDao.getAsteroidsFromThisWeek(
-                            dailyRecords(),
-                            weeklyRecords()
+
+                            // Today
+                            todayCalendar(),
+
+                            // Current Week's Calendar
+                            currentWeekCalendar()
+
                         )
                     _status.value = AsteroidState(false, asteroids)
                 }
 
                 // Today: Display only the Asteroids related to today
                 AsteroidApiFilter.SHOW_TODAY -> {
-                    val asteroids = asteroidDao.getAsteroidToday(dailyRecords())
+                    val asteroids = asteroidDao.getAsteroidToday(todayCalendar())
                     _status.value = AsteroidState(false, asteroids)
                 }
                 else -> {
@@ -138,11 +143,11 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
             val response = repository.asteroidAPI.getAsteroids(
 
-                // Filtered List for only today's records
-                dailyRecords(),
+                // Today
+                todayCalendar(),
 
-                // Detailed list of all Asteroids for the week
-                weeklyRecords()
+                // Current Week's Calendar
+                currentWeekCalendar()
 
             )
 
