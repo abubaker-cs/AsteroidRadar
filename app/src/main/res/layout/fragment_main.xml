@@ -21,51 +21,52 @@
 
         <!-- Thumbnail: Daily Asteroid Picture -->
         <FrameLayout
-            android:id="@+id/activity_main_image_of_the_day_layout"
+            android:id="@+id/daily_thumbnail_container"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="@dimen/daily_thumbnail_wrapper_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
 
             <ImageView
-                android:id="@+id/activity_main_image_of_the_day"
+                android:id="@+id/daily_thumbnail_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/daily_image_thumbnail"
+                android:contentDescription="@string/daily_thumbnail_desc"
                 android:scaleType="centerCrop"
                 app:imageOfTheDay="@{viewModel.picture}"
-                app:srcCompat="@drawable/placeholder_picture_of_day"
+                app:srcCompat="@drawable/daily_thumbnail_placeholder"
                 />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/daily_thumbnail_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="#55010613"
-                android:padding="16dp"
+                android:background="@color/thumbnail_desc_bg"
+                android:padding="@dimen/thumbnail_desc_padding"
                 android:text="@string/image_of_the_day"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/daily_thumbnail_desc_size"
                 android:textStyle="bold"
                 />
         </FrameLayout>
 
+
         <!-- RecyclerView: asteroid_recycler -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/asteroid_recycler"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:paddingTop="6dp"
+            android:id="@+id/asteroids_recycler"
+            android:layout_width="@dimen/width_null"
+            android:layout_height="@dimen/height_null"
+            android:paddingTop="@dimen/rv_padding_top"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day_layout"
+            app:layout_constraintTop_toBottomOf="@+id/daily_thumbnail_container"
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/list_item_asteroid"
             />

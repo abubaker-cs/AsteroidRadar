@@ -16,10 +16,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/unit_12"
-        android:layout_marginTop="@dimen/unit_6"
-        android:layout_marginEnd="@dimen/unit_12"
-        android:layout_marginBottom="@dimen/unit_6"
+        android:layout_marginStart="@dimen/margin_standard"
+        android:layout_marginTop="@dimen/margin_base"
+        android:layout_marginEnd="@dimen/margin_standard"
+        android:layout_marginBottom="@dimen/margin_base"
         app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="@dimen/card_elevation"
         >
@@ -28,16 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/app_bg_card"
-            android:padding="@dimen/card_item_padding"
+            android:padding="@dimen/card_padding"
             >
 
             <!-- Asteroid Name -->
             <TextView
                 android:id="@+id/codenameTextView"
-                android:layout_width="@dimen/unit_0"
+                android:layout_width="@dimen/width_null"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/unit_8"
-                android:padding="@dimen/unit_8"
+                android:layout_marginTop="@dimen/txt_padding"
+                android:padding="@dimen/txt_padding"
                 android:textColor="@color/text_yellow"
                 android:textSize="@dimen/item_name_txt_size"
                 app:codeName="@{asteroid}"
@@ -49,11 +49,11 @@
             <!-- Date -->
             <TextView
                 android:id="@+id/dateTextView"
-                android:layout_width="@dimen/unit_0"
+                android:layout_width="@dimen/width_null"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/unit_8"
+                android:layout_marginEnd="@dimen/txt_padding"
                 android:layout_marginBottom="@dimen/unit_16"
-                android:padding="@dimen/unit_8"
+                android:padding="@dimen/txt_padding"
                 android:text="@{asteroid.closeApproachDate}"
                 android:textColor="@color/default_text_color"
                 android:textSize="@dimen/item_date_txt_size"

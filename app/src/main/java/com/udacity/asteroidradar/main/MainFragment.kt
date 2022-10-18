@@ -67,7 +67,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // I will be using the LinearLayout mode for the RecyclerView
-        binding.asteroidRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.asteroidsRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         // The usage of an interface lets you inject your own implementation
         val menuHost: MenuHost = requireActivity()
@@ -76,7 +76,7 @@ class MainFragment : Fragment() {
         asteroidAdapter = AsteroidsAdapter { asteroid ->
             this.findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
         }
-        binding.asteroidRecycler.adapter = asteroidAdapter
+        binding.asteroidsRecycler.adapter = asteroidAdapter
 
 
         /**
