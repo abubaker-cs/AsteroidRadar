@@ -9,10 +9,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-}
 
-/**
- * TODO 01 - App Icon
- * TODO 02 - Add comments throughout the project
- * TODO 04 - Update README.md
- */
+}
