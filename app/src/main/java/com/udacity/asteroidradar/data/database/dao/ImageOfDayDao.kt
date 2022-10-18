@@ -14,12 +14,12 @@ import com.udacity.asteroidradar.data.model.ImageOfDay
 @Dao
 interface ImageOfDayDao {
 
-    // Insert a picture into the database by using the OnConflictStrategy.REPLACE
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(imageOfDay: ImageOfDay)
-
-    // Get today's picture
+    // Get today's picture of the Asteroid
     @Query("SELECT * from table_image WHERE url=:url")
     suspend fun getImage(url: String): ImageOfDay
+
+    // I am inserting the today's picture into the database using the OnConflictStrategy.REPLACE strategy
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(imageOfDay: ImageOfDay)
 
 }

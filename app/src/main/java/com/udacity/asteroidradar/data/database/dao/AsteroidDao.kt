@@ -14,10 +14,6 @@ import com.udacity.asteroidradar.data.model.Asteroid
 @Dao
 interface AsteroidDao {
 
-    // I am inserting an asteroid's record into the database using the OnConflictStrategy.REPLACE strategy
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(asteroid: List<Asteroid>)
-
     // List of Weekly Asteroids
     @Query("SELECT * FROM table_asteroid WHERE close_approach_date >= :startDay AND close_approach_date <= :endDay ORDER BY close_approach_date")
     suspend fun getAsteroidsFromThisWeek(startDay: String, endDay: String): List<Asteroid>
@@ -29,5 +25,9 @@ interface AsteroidDao {
     // List of all saved Asteroids
     @Query("SELECT * from table_asteroid")
     suspend fun getAsteroids(): List<Asteroid>
+
+    // I am inserting the asteroid's record into the database using the OnConflictStrategy.REPLACE strategy
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(asteroid: List<Asteroid>)
 
 }
