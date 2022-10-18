@@ -7,8 +7,8 @@ asteroids are potentially hazardous or not.
 The app consists of two screens:
 - A Main screen with a list of all the detected asteroids
 - A Details screen that displays the NASA image of the day and the detailed information about the
-  asteroid once it is selected in the Main screen. The main screen also shows the NASA image of the
-  day to make the app more striking.
+  asteroid once it is selected in the Main screen.
+- The main screen also shows the NASA image of the day to make the app more attractive.
 - Includes the Main screen with a list of clickable asteroids
 - Includes a Details screen that displays the selected asteroid data
 - Downloads and parses data from the NASA NeoWS API.
