@@ -40,26 +40,6 @@ Some important dependencies and features used are:
 - Secrets Gradle Plugin for Android - A Gradle plugin for providing your secrets securely to your
   Android project.
 
-## Built With
-* [Android Studio](https://developer.android.com/studio) - Default IDE used to build android apps
-* [Kotlin](https://kotlinlang.org/) - Default language used to build this project
-* [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
-    - Android Jetpack's Navigation component, used for Fragment-based navigation
-* [Retrofit](https://github.com/square/retrofit) - a type-safe HTTP client for Android and Java
-* [Moshi](https://github.com/square/moshi) - a modern JSON library for Android and Java, that makes
-  it easy to parse JSON into Java or Kotlin objects
-* [Picasso](https://square.github.io/picasso) - a powerful image downloading and caching library for
-  Android
-* [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - a
-  collection of libraries that help design robust, testable, and maintainable apps: Room (a SQLite
-  object mapping library), LiveData (builds data objects that notify views when the underlying
-  database changes), ViewModel (stores UI-related data that isn't destroyed on app rotations)
-* [Data Binding](https://developer.android.com/topic/libraries/data-binding) - a Jetpack support
-  library that allows to bind UI components in your layouts to data sources in your app using a
-  declarative format rather than programmatically
-* [MVVM](https://developer.android.com/jetpack/guide) - the architecture pattern used in the app (
-  Model-View-ViewModel), that incorporates the Android Architecture Components
-
 ## Screenshots
 
 ### List of Daily / Weekly or Offline Asteroid Records
