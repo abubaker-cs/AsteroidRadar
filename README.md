@@ -32,14 +32,12 @@ Some important dependencies and features used are:
 - CardView, RecyclerView to display the asteroids in a list.
 - Secrets Gradle Plugin for Android - A Gradle plugin for providing your secrets securely to your
   Android project.
--
 
 The following components from the Jetpack library are used:
 
-- ViewModel
-- Room
-- LiveData and Data Binding
-- Navigation
+- Navigation Component
+- Room Database
+- ViewModel, LiveData and Data Binding
 
 ## Built With
 
