@@ -13,7 +13,7 @@ import com.udacity.asteroidradar.databinding.FragmentDetailBinding
 class DetailFragment : Fragment() {
 
     /**
-     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
+     * Inflates the layout with Data Binding, sets its lifecycle owner to the [DetailFragment]
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +30,7 @@ class DetailFragment : Fragment() {
         val asteroid = DetailFragmentArgs.fromBundle(requireArguments()).selectedAsteroid
         binding.asteroid = asteroid
 
-        // Initialize Custom Dialog
+        // Initialize Custom Dialog for providing information about the Astronomical Unit (au)
         binding.helpButton.setOnClickListener {
             infoDialog()
         }
@@ -38,7 +38,7 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
-    // Custom Dialog
+    // Custom Dialog for explaining Astronomical Unit (au)
     private fun infoDialog() {
 
         // Configurations for the Custom Dialog
