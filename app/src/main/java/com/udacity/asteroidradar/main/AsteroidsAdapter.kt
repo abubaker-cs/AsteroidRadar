@@ -90,7 +90,7 @@ class AsteroidsAdapter(private val onClickListener: (asteroid: Asteroid) -> Unit
 
         val totalSize = asteroids.size
 
-        // TODO: Total Records
+        // Printout List of Total Fetched Records from the API or Offline Room Database
         Log.i("Total Records: ", totalSize.toString())
 
         return asteroids.size
