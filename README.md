@@ -22,7 +22,7 @@ The app consists of two screens:
 
 Some important dependencies and features used are:
 
-- Coroutines
+- Coroutines for getting off the UI thread
 - WorkManager for running predictor tasks in the background
 - MutableStateFlow
 - GSON Library
@@ -30,6 +30,9 @@ Some important dependencies and features used are:
 - Moshi to convert the JSON data we are downloading to usable data in form of custom classes.
 - Glide - An image loading and caching library
 - CardView, RecyclerView to display the asteroids in a list.
+- Secrets Gradle Plugin for Android - A Gradle plugin for providing your secrets securely to your
+  Android project.
+-
 
 The following components from the Jetpack library are used:
 
