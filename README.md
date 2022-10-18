@@ -17,9 +17,7 @@ The app consists of two screens:
   background.
 
 ## Dependencies
-
 Some important dependencies and features used are:
-
 - Coroutines for getting off the UI thread
 - WorkManager for running predictor tasks in the background
 - MutableStateFlow
@@ -31,14 +29,13 @@ Some important dependencies and features used are:
 - Secrets Gradle Plugin for Android - A Gradle plugin for providing your secrets securely to your
   Android project.
 
+## Jetpack Components
 The following components from the Jetpack library are used:
-
 - Navigation Component
 - Room Database
 - ViewModel, LiveData and Data Binding
 
 ## Built With
-
 * [Android Studio](https://developer.android.com/studio) - Default IDE used to build android apps
 * [Kotlin](https://kotlinlang.org/) - Default language used to build this project
 * [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
