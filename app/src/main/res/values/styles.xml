@@ -88,5 +88,44 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <!-- Item: CardView -->
+    <style name="item_cv_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/margin_standard</item>
+        <item name="android:layout_marginTop">@dimen/margin_base</item>
+        <item name="android:layout_marginEnd">@dimen/margin_standard</item>
+        <item name="android:layout_marginBottom">@dimen/margin_base</item>
+    </style>
+
+    <!-- Item: Asteroid Name -->
+    <style name="item_asteroid_name_style">
+        <item name="android:layout_width">@dimen/width_null</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/txt_padding</item>
+        <item name="android:padding">@dimen/txt_padding</item>
+        <item name="android:textColor">@color/text_yellow</item>
+        <item name="android:textSize">@dimen/item_name_txt_size</item>
+    </style>
+
+    <!-- Item: Asteroid Date -->
+    <style name="item_asteroid_date_style">
+        <item name="android:layout_width">@dimen/width_null</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/txt_padding</item>
+        <item name="android:layout_marginBottom">@dimen/tv_margin</item>
+        <item name="android:padding">@dimen/txt_padding</item>
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textSize">@dimen/item_date_txt_size</item>
+    </style>
+
+    <!-- Item: Asteroid Hazard Status -->
+    <style name="item_asteroid_hazard_status_icon_style">
+        <item name="android:layout_width">@dimen/item_thumbnail_width</item>
+        <item name="android:layout_height">@dimen/item_thumbnail_height</item>
+        <item name="android:layout_margin">@dimen/hazard_status_icon_margin</item>
+        <item name="android:contentDescription">@string/list_item_thumbnail_desc</item>
+    </style>
+
 
 </resources>
