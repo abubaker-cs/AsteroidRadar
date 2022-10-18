@@ -19,7 +19,7 @@ import com.udacity.asteroidradar.data.model.ImageOfDay
 @Database(entities = [Asteroid::class, ImageOfDay::class], version = 1, exportSchema = false)
 abstract class AsteroidDatabase : RoomDatabase() {
 
-    // Reference to the table structures which we want to implement inside our asteroid_database
+    // Reference to the table structures which we want to implement inside our [asteroid_database]
     abstract fun asteroidDaoReference(): AsteroidDao
     abstract fun imageOfDayReference(): ImageOfDayDao
 
@@ -44,9 +44,9 @@ abstract class AsteroidDatabase : RoomDatabase() {
 
                 // Inside the synchronized block, we will initialize the instance variable, and
                 // Use Room's Room.databaseBuilder to create asteroid_database only if it doesn't exist.
-                // Otherwise, return the reference of existing database.
+                // Otherwise, we will return the reference of the existing database.
 
-                // Pass in:
+                // We are passing in:
                 // 1. application context
                 // 2. database class
                 // 3. name for the database
