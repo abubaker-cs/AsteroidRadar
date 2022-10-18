@@ -4,6 +4,7 @@ Asteroid Radar is an app to view the asteroids detected by NASA that pass near E
 all the detected asteroids in a period of time, their data (Size, velocity, distance to Earth) and
 if they are potentially hazardous.
 
+## App's Overview
 The app consists of two screens:
 - A Main screen with a list of all the detected asteroids
 - A Details screen that displays the NASA image of the day and the detailed information about the
@@ -16,7 +17,7 @@ The app consists of two screens:
 - The asteroids data is cached by using a worker, so it downloads and saves week asteroids in
   background.
 
-## Dependencies
+## Important Dependencies
 Some important dependencies and features used are:
 - Coroutines for getting off the UI thread
 - WorkManager for running predictor tasks in the background
