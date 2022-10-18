@@ -19,7 +19,6 @@ import com.udacity.asteroidradar.main.enums.AsteroidApiFilter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-
 class MainFragment : Fragment() {
 
     /**
@@ -35,7 +34,6 @@ class MainFragment : Fragment() {
     // Reference for the fragment_main.xml which I will later on inflate in the onCreateView()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-
 
     /**
      * Inflates the layout with Data Binding, sets its lifecycle owner to the MainFragment
@@ -76,25 +74,26 @@ class MainFragment : Fragment() {
         asteroidAdapter = AsteroidsAdapter { asteroid ->
             this.findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
         }
+
+        // Bind our asteroidAdapter to the @asteroids_recycler in the fragment_main.xml file
         binding.asteroidsRecycler.adapter = asteroidAdapter
 
-
         /**
-         * Asteroid
+         * Asteroid - Fetch and populate data in the RecyclerView
          */
         viewModel.status.onEach { asteroidState ->
             asteroidAdapter.setAsteroids(asteroidState.asteroids)
         }.launchIn(lifecycleScope)
 
-
         /**
-         * Downloading
+         * Downloading - Show the ProgressBar if the Downloading is in process...
          */
         viewModel.downloadingState.onEach { isDownloading ->
             binding.downloadingProgressBar.isVisible = isDownloading
         }.launchIn(lifecycleScope)
 
         // Add menu items without using the Fragment Menu APIs
+        // ===================================================
         // Note how we can tie the MenuProvider to the viewLifecycleOwner
         // and an optional Lifecycle.State (here, RESUMED) to indicate when
         // the menu should be visible
@@ -117,9 +116,17 @@ class MainFragment : Fragment() {
 
                 // Handle the menu selection
                 viewModel.updateFilter(
+
+                    // Conditional Actions:
                     when (menuItem.itemId) {
+
+                        // Show List of all Asteroids for this Week
                         R.id.show_week -> AsteroidApiFilter.SHOW_CURRENT_WEEK_DATA
+
+                        // Show only Today's Asteroids
                         R.id.show_today -> AsteroidApiFilter.SHOW_TODAY_DATA
+
+                        // Show data from offline room database
                         else -> AsteroidApiFilter.SHOW_OFFLINE_SAVED_DATA
                     }
                 )
@@ -132,9 +139,25 @@ class MainFragment : Fragment() {
     }
 
 
+    // Allows the fragment to clean up resources associated with its View
+    // Reference: https://developer.android.com/reference/android/app/Fragment#onDestroy()
     override fun onDestroyView() {
+
         super.onDestroyView()
+
+        // Issue:
+        // =====
+        // Ideally our fragment has no references to the views that were created and destroyed from
+        // the first onCreateView()/onDestroyView() cycle. This means that we do not want to hold
+        // onto our binding object after onDestroyView() gets called.
+        //
+        // Solution:
+        // =========
+        // The recommended pattern is to set the Kotlin property that holds the binding object to null in onDestroyView().
+        //
+        // Reference: https://commonsware.com/Jetpack/pages/chap-fragments-007.html
         _binding = null
+
     }
 
 }
