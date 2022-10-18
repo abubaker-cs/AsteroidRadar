@@ -28,5 +28,9 @@
 
     <dimen name="card_radius">16sp</dimen>
     <dimen name="card_elevation">20sp</dimen>
+    <dimen name="iv_padding">16dp</dimen>
+    <dimen name="sv_padding">16dp</dimen>
+    <dimen name="list_tv_desc_size">17sp</dimen>
+    <dimen name="list_tv_value_size">21sp</dimen>
 
 </resources>

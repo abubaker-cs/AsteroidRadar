@@ -8,4 +8,38 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="details_desc_style">
+        <item name="android:layout_marginTop">@dimen/tv_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_yellow</item>
+        <item name="android:textSize">@dimen/list_tv_desc_size</item>
+    </style>
+
+    <style name="details_value_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textSize">@dimen/list_tv_value_size</item>
+    </style>
+
+    <style name="details_help_icon_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/iv_padding</item>
+    </style>
+
+    <style name="details_sv_style">
+        <item name="android:layout_width">@dimen/width_null</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/sv_padding</item>
+    </style>
+
+    <style name="details_thumbnail_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
 </resources>
