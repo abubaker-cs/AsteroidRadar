@@ -17,24 +17,28 @@ The app consists of two screens:
 - The asteroids data is cached by using a worker, so it downloads and saves week asteroids in
   background.
 
-## Important Dependencies
+## Jetpack Components
+
+The following components from the Jetpack library are used:
+
+- Navigation Component
+- Room Database
+- ViewModel, LiveData and Data Binding
+
+## Important Dependencies & Features
+
 Some important dependencies and features used are:
+
 - Coroutines for getting off the UI thread
 - WorkManager for running predictor tasks in the background
 - MutableStateFlow
-- GSON Library
+- GSON Library - A library to serialize and deserialize Java objects to JSON
 - Retrofit with Moshi + Scalars Converters to download and convert the data from the Internet.
 - Moshi to convert the JSON data we are downloading to usable data in form of custom classes.
 - Glide - An image loading and caching library
 - CardView, RecyclerView to display the asteroids in a list.
 - Secrets Gradle Plugin for Android - A Gradle plugin for providing your secrets securely to your
   Android project.
-
-## Jetpack Components
-The following components from the Jetpack library are used:
-- Navigation Component
-- Room Database
-- ViewModel, LiveData and Data Binding
 
 ## Built With
 * [Android Studio](https://developer.android.com/studio) - Default IDE used to build android apps
