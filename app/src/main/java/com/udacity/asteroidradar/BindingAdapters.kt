@@ -16,7 +16,7 @@ import com.udacity.asteroidradar.main.data.ImageState
  * For Main Screen
  */
 
-// 01 Status Image: Main Screen
+// 01 Status Icon (Non/Potential Hazardous: Main Screen
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 
