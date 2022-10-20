@@ -25,11 +25,15 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 
         // ICON: Potentially Hazardous
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
+        imageView.contentDescription =
+            imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
 
     } else {
 
         // ICON: Normal
         imageView.setImageResource(R.drawable.ic_status_normal)
+        imageView.contentDescription =
+            imageView.context.getString(R.string.not_hazardous_asteroid_image)
 
     }
 
@@ -90,11 +94,15 @@ fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
 
         // IMAGE: Potentially Hazardous
         imageView.setImageResource(R.drawable.asteroid_hazardous)
+        imageView.contentDescription =
+            imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
 
     } else {
 
         // IMAGE: Safe
         imageView.setImageResource(R.drawable.asteroid_safe)
+        imageView.contentDescription =
+            imageView.context.getString(R.string.not_hazardous_asteroid_image)
 
     }
 }

@@ -63,6 +63,8 @@ class AsteroidsRepository {
             @Query("api_key") apiKey: String = Constants.API_KEY
         ): ImageOfDay
 
+        // TODO Since more than one network API has api_key as a query parameter, you can create an API interceptor and chain it with your network requests to avoid repetitively passing the API key as a parameter.
+
     }
 
 }
