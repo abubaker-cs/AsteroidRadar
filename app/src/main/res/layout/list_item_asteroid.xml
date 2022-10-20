@@ -49,12 +49,13 @@
             <!-- Status Icon -->
             <ImageView
                 android:id="@+id/icon_hazard_status"
+                style="@style/item_asteroid_hazard_status_icon_style"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:statusIcon="@{asteroid.potentiallyHazardous}"
+                tools:ignore="ContentDescription"
                 tools:srcCompat="@tools:sample/avatars"
-                style="@style/item_asteroid_hazard_status_icon_style"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
