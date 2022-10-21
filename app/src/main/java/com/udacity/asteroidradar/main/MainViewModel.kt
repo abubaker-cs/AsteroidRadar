@@ -44,6 +44,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     val picture: LiveData<ImageState> = _picture
 
+    // LiveData for the daily image
+    private val _currentImageOfDay =
+        MutableLiveData<ImageOfDay>()
+    val currentImageOfDay: LiveData<ImageOfDay>
+        get() = _currentImageOfDay
+
     val downloadingState = status.map { value -> value.downloading }
 
     // LiveData Asteroid with an internal Mutable and external LiveData
@@ -69,6 +75,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
      * Call getAsteroid() on init so we can display status immediately.
      */
     init {
+
+        getImageOfDayResponse()
 
         // Coroutine that will be canceled when the ViewModel is cleared.
         viewModelScope.launch {
@@ -214,5 +222,20 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
 
     }
+
+    //
+    private fun getImageOfDayResponse() {
+        viewModelScope.launch {
+            try {
+                // Grabs picture from retrofit and assigns it to mutable livedata variable
+                val currentImage = repository.asteroidAPI.getImage()
+                _currentImageOfDay.value = currentImage
+            } catch (e: Exception) {
+                // Log the exception
+                e.printStackTrace()
+            }
+        }
+    }
+
 
 }

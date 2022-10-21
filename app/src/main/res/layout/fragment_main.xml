@@ -31,9 +31,9 @@
             <ImageView
                 android:id="@+id/daily_thumbnail_image"
                 style="@style/list_thumbnail_style"
+                android:contentDescription="@{viewModel.currentImageOfDay.title}"
                 app:imageOfTheDay="@{viewModel.picture}"
                 app:srcCompat="@drawable/daily_thumbnail_placeholder"
-                tools:ignore="ContentDescription"
                 />
 
             <TextView

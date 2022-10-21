@@ -57,6 +57,7 @@ fun bindImageOfDay(imageView: ImageView, imgUrl: LiveData<ImageState>) {
             // Returns a request builder to load the given Uri.
             .load(imgUri)
 
+
             // Loading and Fallback images
             .apply(
 
