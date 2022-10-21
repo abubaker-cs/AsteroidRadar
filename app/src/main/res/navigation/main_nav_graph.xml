@@ -11,10 +11,12 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main"
         >
-        <action
+
+    <action
             android:id="@+id/action_showDetail"
             app:destination="@id/detailFragment"
             />
+
     </fragment>
 
     <fragment
