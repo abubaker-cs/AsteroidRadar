@@ -3,6 +3,7 @@ package com.udacity.asteroidradar.repositories
 import com.google.gson.JsonObject
 import com.udacity.asteroidradar.data.model.ImageOfDay
 import com.udacity.asteroidradar.utils.Constants
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -18,11 +19,21 @@ class AsteroidsRepository {
          * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
          * object.
          */
-        val retrofit: Retrofit = Retrofit
-            .Builder()
-            .baseUrl(Constants.BASE_URL)
+        val retrofit: Retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .build()
+            .baseUrl(Constants.BASE_URL)
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor { chain ->
+                        val url = chain
+                            .request()
+                            .url()
+                            .newBuilder()
+                            .addQueryParameter("api_key", Constants.API_KEY)
+                            .build()
+                        chain.proceed(chain.request().newBuilder().url(url).build())
+                    }.build()
+            ).build()
 
         asteroidAPI = retrofit.create(AsteroidAPI::class.java)
 
@@ -40,8 +51,7 @@ class AsteroidsRepository {
         @GET("neo/rest/v1/feed/")
         suspend fun getAsteroids(
             @Query("start_date") startDate: String,
-            @Query("end_date") endDate: String,
-            @Query("api_key") apiKey: String = Constants.API_KEY
+            @Query("end_date") endDate: String
         ): JsonObject
 
 
@@ -59,11 +69,7 @@ class AsteroidsRepository {
          * 7. url
          */
         @GET("planetary/apod/")
-        suspend fun getImage(
-            @Query("api_key") apiKey: String = Constants.API_KEY
-        ): ImageOfDay
-
-        // TODO Since more than one network API has api_key as a query parameter, you can create an API interceptor and chain it with your network requests to avoid repetitively passing the API key as a parameter.
+        suspend fun getImage(): ImageOfDay
 
     }
 
